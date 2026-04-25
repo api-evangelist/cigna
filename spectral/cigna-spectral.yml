@@ -1,0 +1,40 @@
+extends:
+  - spectral:oas
+rules:
+  cigna-https-only:
+    description: Cigna APIs must use HTTPS.
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: '^https://'
+  cigna-info-contact:
+    description: Definitions must declare contact information for Cigna developer support.
+    severity: error
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+  cigna-fhir-base:
+    description: FHIR servers should be hosted on fhir.cigna.com.
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: 'fhir\.cigna\.com'
+  cigna-smart-on-fhir:
+    description: Patient Access definitions must declare a smartOnFhir security scheme.
+    severity: warn
+    given: $.components.securitySchemes
+    then:
+      field: smartOnFhir
+      function: truthy
+  cigna-tag-required:
+    description: Each operation should declare at least one tag aligned with FHIR resource types.
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: tags
+      function: truthy

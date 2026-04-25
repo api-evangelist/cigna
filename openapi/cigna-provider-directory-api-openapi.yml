@@ -1,0 +1,101 @@
+openapi: 3.1.0
+info:
+  title: Cigna Provider Directory API
+  description: >-
+    Public FHIR-based Provider Directory API listing Cigna's contracted
+    practitioners, organizations, locations, healthcare services, networks, and
+    insurance plans. Implements the HL7 Da Vinci PDex Plan Network IG and the
+    CMS Provider Directory API requirements.
+  version: '1.0'
+  contact:
+    name: Cigna Developer Support
+    url: https://developer.cigna.com/support
+externalDocs:
+  description: Provider Directory Implementation Guide
+  url: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide
+servers:
+  - url: https://fhir.cigna.com/ProviderDirectory/v1
+    description: Cigna Provider Directory Production
+tags:
+  - name: Practitioner
+  - name: Organization
+  - name: Location
+  - name: HealthcareService
+  - name: PractitionerRole
+  - name: Network
+  - name: InsurancePlan
+paths:
+  /metadata:
+    get:
+      operationId: getCapabilityStatement
+      summary: Retrieve the FHIR capability statement
+      tags: [Practitioner]
+      responses:
+        '200':
+          description: FHIR CapabilityStatement
+  /Practitioner:
+    get:
+      operationId: searchPractitioner
+      summary: Search practitioners in the Cigna network
+      tags: [Practitioner]
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+        - name: identifier
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: FHIR Bundle of Practitioner resources
+  /Organization:
+    get:
+      operationId: searchOrganization
+      summary: Search organizations in the Cigna network
+      tags: [Organization]
+      responses:
+        '200':
+          description: FHIR Bundle of Organization resources
+  /Location:
+    get:
+      operationId: searchLocation
+      summary: Search locations of Cigna network providers
+      tags: [Location]
+      parameters:
+        - name: address
+          in: query
+          schema:
+            type: string
+        - name: address-postalcode
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: FHIR Bundle of Location resources
+  /HealthcareService:
+    get:
+      operationId: searchHealthcareService
+      summary: Search healthcare services offered by Cigna network providers
+      tags: [HealthcareService]
+      responses:
+        '200':
+          description: FHIR Bundle of HealthcareService resources
+  /PractitionerRole:
+    get:
+      operationId: searchPractitionerRole
+      summary: Search practitioner roles within Cigna networks
+      tags: [PractitionerRole]
+      responses:
+        '200':
+          description: FHIR Bundle of PractitionerRole resources
+  /InsurancePlan:
+    get:
+      operationId: searchInsurancePlan
+      summary: List Cigna insurance plans and the networks associated with each
+      tags: [InsurancePlan]
+      responses:
+        '200':
+          description: FHIR Bundle of InsurancePlan resources

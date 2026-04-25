@@ -1,0 +1,105 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "cigna": "https://developer.cigna.com/schemas/",
+    "fhir": "http://hl7.org/fhir/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Patient": {
+      "@id": "fhir:Patient",
+      "@context": {
+        "id": "fhir:Resource.id",
+        "name": "schema:name",
+        "birthDate": {
+          "@id": "fhir:Patient.birthDate",
+          "@type": "xsd:date"
+        },
+        "gender": "fhir:Patient.gender",
+        "identifier": "fhir:Patient.identifier"
+      }
+    },
+
+    "Coverage": {
+      "@id": "fhir:Coverage",
+      "@context": {
+        "id": "fhir:Resource.id",
+        "status": "fhir:Coverage.status",
+        "subscriberId": "fhir:Coverage.subscriberId",
+        "beneficiary": "fhir:Coverage.beneficiary",
+        "payor": "fhir:Coverage.payor",
+        "period": "fhir:Coverage.period"
+      }
+    },
+
+    "ExplanationOfBenefit": {
+      "@id": "fhir:ExplanationOfBenefit",
+      "@context": {
+        "id": "fhir:Resource.id",
+        "status": "fhir:ExplanationOfBenefit.status",
+        "type": "fhir:ExplanationOfBenefit.type",
+        "use": "fhir:ExplanationOfBenefit.use",
+        "patient": "fhir:ExplanationOfBenefit.patient",
+        "billablePeriod": "fhir:ExplanationOfBenefit.billablePeriod",
+        "insurer": "fhir:ExplanationOfBenefit.insurer",
+        "provider": "fhir:ExplanationOfBenefit.provider",
+        "total": "fhir:ExplanationOfBenefit.total"
+      }
+    },
+
+    "Practitioner": {
+      "@id": "fhir:Practitioner",
+      "@context": {
+        "id": "fhir:Resource.id",
+        "identifier": "fhir:Practitioner.identifier",
+        "name": "schema:name",
+        "telecom": "fhir:Practitioner.telecom",
+        "address": "fhir:Practitioner.address",
+        "qualification": "fhir:Practitioner.qualification"
+      }
+    },
+
+    "Organization": {
+      "@id": "fhir:Organization",
+      "@context": {
+        "id": "fhir:Resource.id",
+        "identifier": "fhir:Organization.identifier",
+        "name": "schema:name",
+        "type": "fhir:Organization.type",
+        "address": "fhir:Organization.address"
+      }
+    },
+
+    "Location": {
+      "@id": "fhir:Location",
+      "@context": {
+        "id": "fhir:Resource.id",
+        "name": "schema:name",
+        "address": "fhir:Location.address",
+        "position": "fhir:Location.position"
+      }
+    },
+
+    "MedicationKnowledge": {
+      "@id": "fhir:MedicationKnowledge",
+      "@context": {
+        "id": "fhir:Resource.id",
+        "code": "fhir:MedicationKnowledge.code",
+        "status": "fhir:MedicationKnowledge.status",
+        "doseForm": "fhir:MedicationKnowledge.doseForm",
+        "drugCharacteristic": "fhir:MedicationKnowledge.drugCharacteristic"
+      }
+    },
+
+    "InsurancePlan": {
+      "@id": "fhir:InsurancePlan",
+      "@context": {
+        "id": "fhir:Resource.id",
+        "name": "schema:name",
+        "type": "fhir:InsurancePlan.type",
+        "coverageArea": "fhir:InsurancePlan.coverageArea",
+        "network": "fhir:InsurancePlan.network"
+      }
+    }
+  }
+}

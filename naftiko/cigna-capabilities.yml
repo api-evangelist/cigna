@@ -1,0 +1,107 @@
+name: cigna-capabilities
+description: >-
+  Naftiko sandbox capabilities for the Cigna Developer Portal FHIR APIs
+  covering Patient Access, Provider Directory, Drug Formulary, and Provider
+  Access.
+provider: cigna
+version: '1.0'
+capabilities:
+  - id: cigna.patient.userinfo
+    name: Get authenticated user info
+    description: Retrieve the authenticated member's FHIR identifier from $userinfo.
+    operationId: getUserInfo
+    inputs: []
+    outputs:
+      - name: userInfo
+        type: object
+    tags: [patient-access, fhir, smart-on-fhir]
+  - id: cigna.patient.read
+    name: Read patient
+    description: Retrieve the authenticated member's Patient resource.
+    operationId: searchPatient
+    inputs:
+      - name: id
+        type: string
+        required: false
+    outputs:
+      - name: bundle
+        type: object
+    tags: [patient-access, fhir]
+  - id: cigna.coverage.search
+    name: Search coverage
+    description: Retrieve the member's Coverage resources.
+    operationId: searchCoverage
+    inputs:
+      - name: patient
+        type: string
+        required: true
+    outputs:
+      - name: bundle
+        type: object
+    tags: [patient-access, fhir, coverage]
+  - id: cigna.eob.search
+    name: Search explanation of benefits
+    description: Retrieve claims data via FHIR ExplanationOfBenefit resources.
+    operationId: searchExplanationOfBenefit
+    inputs:
+      - name: patient
+        type: string
+        required: true
+    outputs:
+      - name: bundle
+        type: object
+    tags: [patient-access, fhir, claims]
+  - id: cigna.providerDirectory.practitioner
+    name: Search practitioners
+    description: Search practitioners listed in the public Cigna Provider Directory.
+    operationId: searchPractitioner
+    inputs:
+      - name: name
+        type: string
+        required: false
+      - name: identifier
+        type: string
+        required: false
+    outputs:
+      - name: bundle
+        type: object
+    tags: [provider-directory, fhir]
+  - id: cigna.providerDirectory.location
+    name: Search locations
+    description: Search locations of Cigna network providers by ZIP code or address.
+    operationId: searchLocation
+    inputs:
+      - name: postalCode
+        type: string
+        required: false
+    outputs:
+      - name: bundle
+        type: object
+    tags: [provider-directory, fhir]
+  - id: cigna.formulary.medicationKnowledge
+    name: Lookup formulary drug
+    description: Retrieve formulary tier, prior authorization, step therapy, and quantity limits for a drug.
+    operationId: searchMedicationKnowledge
+    inputs:
+      - name: code
+        type: string
+        required: true
+      - name: drugPlan
+        type: string
+        required: false
+    outputs:
+      - name: bundle
+        type: object
+    tags: [drug-formulary, fhir]
+  - id: cigna.providerAccess.bulkExport
+    name: Initiate provider bulk export
+    description: Initiate a SMART Backend Services bulk FHIR export for an attributed group.
+    operationId: bulkExportGroup
+    inputs:
+      - name: groupId
+        type: string
+        required: true
+    outputs:
+      - name: contentLocation
+        type: string
+    tags: [provider-access, bulk-data, fhir]

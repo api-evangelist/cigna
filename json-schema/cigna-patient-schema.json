@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cigna/refs/heads/main/json-schema/cigna-patient-schema.json",
+  "title": "CignaPatient",
+  "description": "FHIR R4 Patient resource as exposed by the Cigna Patient Access API. Aligned with the US Core Patient profile referenced by the HL7 Da Vinci PDex implementation guide.",
+  "type": "object",
+  "required": ["resourceType", "id"],
+  "properties": {
+    "resourceType": {
+      "type": "string",
+      "const": "Patient"
+    },
+    "id": {
+      "type": "string",
+      "description": "Logical identifier of the Patient resource."
+    },
+    "identifier": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "system": { "type": "string" },
+          "value": { "type": "string" }
+        }
+      }
+    },
+    "active": { "type": "boolean" },
+    "name": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "use": { "type": "string" },
+          "family": { "type": "string" },
+          "given": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "telecom": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "system": { "type": "string" },
+          "value": { "type": "string" },
+          "use": { "type": "string" }
+        }
+      }
+    },
+    "gender": {
+      "type": "string",
+      "enum": ["male", "female", "other", "unknown"]
+    },
+    "birthDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "address": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "use": { "type": "string" },
+          "line": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "city": { "type": "string" },
+          "state": { "type": "string" },
+          "postalCode": { "type": "string" },
+          "country": { "type": "string" }
+        }
+      }
+    },
+    "communication": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "language": { "type": "object" },
+          "preferred": { "type": "boolean" }
+        }
+      }
+    }
+  }
+}
