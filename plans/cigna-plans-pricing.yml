@@ -4,179 +4,104 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Cigna
 providerId: cigna
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - CMS Interoperability
-  - Da Vinci
-  - Drug Formulary
   - FHIR
   - Health Insurance
   - Healthcare
   - Patient Access
   - Provider Directory
   - SMART on FHIR
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+description: Cigna's developer APIs (Patient Access, Provider Directory, Drug Formulary, Provider
+  Access) are CMS-mandated FHIR endpoints published under the CMS Interoperability and Patient Access
+  final rule (and the Interoperability and Prior Authorization rule). They are not commercial APIs
+  and have no published price — third-party applications register via SMART on FHIR / OAuth and
+  consume them at no charge to comply with member-authorized data access. Provider Directory and
+  Drug Formulary are public FHIR endpoints that do not require authentication for read access.
+notes: No commercial pricing exists. Access is governed by federal interoperability rules, not a
+  commercial plan.
+sources:
+  - https://developer.cigna.com/
+  - https://developer.cigna.com/docs/service-apis
+  - https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
 plans:
-  - id: cigna-free
-    name: Free
+  - id: cigna-public-fhir
+    name: Public FHIR (Provider Directory and Drug Formulary)
     type: freemium
-    description: Free entry tier for the Cigna API surface. Intended for evaluation, prototyping, and
-      low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
+    description: Public, unauthenticated FHIR R4 endpoints for the Cigna Provider Directory and Drug
+      Formulary APIs, conforming to the HL7 Da Vinci PDex Plan Network and US Drug Formulary
+      implementation guides.
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://fhir.cigna.com/PatientAccess/v1
-          - https://fhir.cigna.com/ProviderDirectory/v1
-          - https://fhir.cigna.com/DrugFormulary/v1
-          - https://fhir.cigna.com/ProviderAccess/v1
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://fhir.cigna.com/PatientAccess/v1
-          - https://fhir.cigna.com/ProviderDirectory/v1
-          - https://fhir.cigna.com/DrugFormulary/v1
-          - https://fhir.cigna.com/ProviderAccess/v1
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Cigna Patient Access API
-      - name: Cigna Provider Directory API
-      - name: Cigna Drug Formulary API
-      - name: Cigna Provider Access API
-  - id: cigna-pro
-    name: Professional
-    type: paid
-    description: Production tier for Cigna. Provides higher quotas, priority support, and access to the
-      broader API portfolio. Pricing placeholder; align with the provider's pricing page.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://fhir.cigna.com/PatientAccess/v1
-          - https://fhir.cigna.com/ProviderDirectory/v1
-          - https://fhir.cigna.com/DrugFormulary/v1
-          - https://fhir.cigna.com/ProviderAccess/v1
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://fhir.cigna.com/PatientAccess/v1
-          - https://fhir.cigna.com/ProviderDirectory/v1
-          - https://fhir.cigna.com/DrugFormulary/v1
-          - https://fhir.cigna.com/ProviderAccess/v1
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
+      - label: API access
+        name: api_access
+        type: flat
+        metric: request
         limit: -1
-        timeFrame: month
-        geo: global
-        domains:
-          - https://fhir.cigna.com/PatientAccess/v1
-          - https://fhir.cigna.com/ProviderDirectory/v1
-          - https://fhir.cigna.com/DrugFormulary/v1
-          - https://fhir.cigna.com/ProviderAccess/v1
-        unit: 1000
-        price: TBD
+        timeFrame: usage
+        geo: US
+        unit: 1
+        price: '$0 — public access'
         userMultiplied: false
     elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Cigna Patient Access API
-      - name: Cigna Provider Directory API
-      - name: Cigna Drug Formulary API
-      - name: Cigna Provider Access API
-  - id: cigna-enterprise
-    name: Enterprise
-    type: enterprise
-    description: Custom-negotiated tier for Cigna. Includes dedicated capacity, contractual SLAs, security
-      review, data residency options, and named technical account management.
+      - name: FHIR R4 conformance
+      - name: Da Vinci PDex Plan Network IG
+      - name: Da Vinci PDex US Drug Formulary IG
+      - name: No authentication required
+  - id: cigna-patient-access
+    name: Patient Access (SMART on FHIR)
+    type: freemium
+    description: Member-authorized access to a Cigna member's claims, encounters, clinical data,
+      coverage, and pharmacy information via SMART on FHIR / OAuth 2.0. Conforms to the CMS Patient
+      Access rule and the HL7 Da Vinci PDex IG. Third-party application onboarding is required.
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
+      - label: API access
+        name: api_access
+        type: flat
+        metric: request
         limit: -1
-        timeFrame: month
-        geo: configurable
-        domains:
-          - https://fhir.cigna.com/PatientAccess/v1
-          - https://fhir.cigna.com/ProviderDirectory/v1
-          - https://fhir.cigna.com/DrugFormulary/v1
-          - https://fhir.cigna.com/ProviderAccess/v1
+        timeFrame: usage
+        geo: US
         unit: 1
-        price: custom
+        price: '$0 — CMS-mandated, member-authorized'
         userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains:
-          - https://fhir.cigna.com/PatientAccess/v1
-          - https://fhir.cigna.com/ProviderDirectory/v1
-          - https://fhir.cigna.com/DrugFormulary/v1
-          - https://fhir.cigna.com/ProviderAccess/v1
+      - label: Application registration
+        name: app_registration
+        type: flat
+        metric: usage
+        limit: -1
+        timeFrame: usage
+        geo: US
         unit: 1
-        price: custom
+        price: '$0'
         userMultiplied: false
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Cigna Patient Access API
-      - name: Cigna Provider Directory API
-      - name: Cigna Drug Formulary API
-      - name: Cigna Provider Access API
+      - name: SMART on FHIR / OAuth 2.0
+      - name: Da Vinci PDex implementation guide
+      - name: CMS Interoperability and Patient Access rule conformance
+      - name: Application onboarding via the Cigna developer portal
+  - id: cigna-provider-access
+    name: Provider Access
+    type: freemium
+    description: Provider-authorized FHIR API for in-network providers to retrieve member clinical
+      and claims data for care coordination. Conforms to the Da Vinci PDex Provider Access IG and
+      the CMS Interoperability and Prior Authorization final rule.
+    entries:
+      - label: API access
+        name: api_access
+        type: flat
+        metric: request
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: 1
+        price: '$0 — CMS-mandated, provider-authorized'
+        userMultiplied: false
+    elements:
+      - name: FHIR R4 conformance
+      - name: Da Vinci PDex Provider Access IG
+      - name: Provider attestation / authorization workflow
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

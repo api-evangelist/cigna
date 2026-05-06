@@ -1,163 +1,90 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Cigna
+providerId: cigna
+created: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
+tags:
+  - CMS Interoperability
+  - FHIR
+  - Healthcare
+  - Patient Access
+  - FinOps
+  - FOCUS
+description: 'FOCUS-aligned FinOps for Cigna FHIR APIs: there is no commercial billing surface — the
+  endpoints are CMS-mandated and provided at no charge to compliant third-party applications.
+  Cost-of-ownership for the Cigna engineering team manifests as internal infrastructure spend
+  (cloud, gateway, identity) tracked by Cigna FinOps, not as customer-facing line items.'
+notes: Cigna does not bill external developers for FHIR API access. The FinOps shape below describes
+  Cigna's internal cost surface for operating the developer platform.
+sources:
+  - https://developer.cigna.com/
+  - https://developer.cigna.com/docs/service-apis
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
   dataSpec: FOCUS
   dataSpecVersion: '1.3'
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
-provider: Cigna
-providerId: cigna
-publisherName: Cigna
-serviceCategory: API
-created: '2026-05-04'
-modified: '2026-05-04'
-tags:
-  - CMS Interoperability
-  - Da Vinci
-  - Drug Formulary
-  - FHIR
-  - Health Insurance
-  - Healthcare
-  - Patient Access
-  - Provider Directory
-  - SMART on FHIR
-  - FinOps
-  - Cost Management
-  - FOCUS
-description: FinOps framework definition for the Cigna API surface. Provides a FOCUS-aligned mapping for
-  cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+publisherName: Cigna Health and Life Insurance Company
+serviceCategory: Healthcare / Health Insurance
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
-  billingCurrency: USD
+  pricingCategory: No Customer Charge (Regulatory)
+  billingFrequency: N/A
+  billingCurrency: N/A
   chargeCategories:
-    - Usage
-    - Purchase
-    - Tax
-    - Credit
     - Adjustment
-  chargeFrequency: Recurring
 focusColumns:
-  ServiceName: Cigna
-  ServiceCategory: Developer Tools / API
+  ServiceName: Cigna Developer FHIR APIs
+  ServiceCategory: Healthcare / Interoperability
   ProviderName: Cigna
-  PublisherName: Cigna
-  InvoiceIssuerName: Cigna
-  PricingCategory: Usage-Based
-  PricingUnit: request
-  BillingCurrency: USD
-  ChargeCategory: Usage
+  PublisherName: Cigna Health and Life Insurance Company
+  InvoiceIssuerName: N/A
+  BillingCurrency: N/A
+  ChargeCategory: Adjustment
+  PricingCategory: No Charge (Regulatory)
 meters:
   - name: api_requests
-    description: Count of billable API requests
+    description: FHIR API request volume (operational signal — not a customer billing meter)
     unit: request
     aggregation: sum
     dimensions:
       - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
+      - application
+      - environment
+  - name: token_issuance
+    description: SMART on FHIR / OAuth 2.0 token issuance events
+    unit: token
+    aggregation: sum
+    dimensions:
+      - application
+  - name: registered_applications
+    description: Distinct third-party applications registered against the developer portal
+    unit: application
+    aggregation: max
+    dimensions:
+      - environment
+  - name: bytes_egressed
+    description: Bytes of FHIR Bundle data returned to clients (network cost signal)
     unit: GB
     aggregation: sum
     dimensions:
       - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Cigna Patient Access API
-    baseURL: https://fhir.cigna.com/PatientAccess/v1
-    tags:
-      - CMS Interoperability
-      - FHIR
-      - Patient Access
-      - SMART on FHIR
-    serviceName: Cigna Patient Access API
-    serviceCategory: API
-  - name: Cigna Provider Directory API
-    baseURL: https://fhir.cigna.com/ProviderDirectory/v1
-    tags:
-      - CMS Interoperability
-      - FHIR
-      - Provider Directory
-      - Public API
-    serviceName: Cigna Provider Directory API
-    serviceCategory: API
-  - name: Cigna Drug Formulary API
-    baseURL: https://fhir.cigna.com/DrugFormulary/v1
-    tags:
-      - CMS Interoperability
-      - Drug Formulary
-      - FHIR
-      - Public API
-    serviceName: Cigna Drug Formulary API
-    serviceCategory: API
-  - name: Cigna Provider Access API
-    baseURL: https://fhir.cigna.com/ProviderAccess/v1
-    tags:
-      - CMS Interoperability
-      - FHIR
-      - Provider Access
-    serviceName: Cigna Provider Access API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+principles:
+  - name: Visibility
+    description: Track FHIR API usage internally through API gateway logs, the OAuth issuer, and the
+      developer portal. Surface the operational cost back to interoperability and compliance teams.
+  - name: Allocation
+    description: Allocate developer-platform infrastructure cost to interoperability / regulatory
+      compliance and to the digital member-experience program rather than to a customer cost center.
+  - name: Optimization
+    description: Cache Provider Directory and Drug Formulary FHIR responses, scale gateway capacity to
+      the diurnal Patient Access curve, and decommission stale registered applications.
+  - name: Accountability
+    description: Compliance / regulatory affairs owns rule conformance; digital health engineering
+      owns FHIR platform uptime; security owns SMART on FHIR consent and token issuance.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

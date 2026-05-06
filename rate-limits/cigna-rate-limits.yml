@@ -4,105 +4,57 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Cigna
 providerId: cigna
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - CMS Interoperability
-  - Da Vinci
-  - Drug Formulary
   - FHIR
-  - Health Insurance
   - Healthcare
   - Patient Access
   - Provider Directory
-  - SMART on FHIR
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Cigna API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+description: Cigna does not publish a numeric per-second or per-minute rate-limit policy on its
+  public developer portal for the FHIR API surface. The endpoints (Patient Access, Provider Directory,
+  Drug Formulary, Provider Access) are governed by HIPAA, CMS Interoperability rules, and Cigna's
+  application-onboarding terms. Practical limits are imposed at the WAF / API-gateway layer and on
+  the SMART on FHIR token issuer; client applications that exceed fair-use thresholds are throttled
+  with a 429 response and may be contacted by Cigna's developer-relations team.
+notes: No public per-second / per-minute rate-limit numbers are documented. Approved applications
+  receive guidance through the developer-portal onboarding process.
+sources:
+  - https://developer.cigna.com/
+  - https://developer.cigna.com/docs/service-apis
+  - https://developer.cigna.com/support
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
+  unauthorized: 401
+  forbidden: 403
+  serverError: 500
   serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Cigna Patient Access API
-      - Cigna Provider Directory API
-      - Cigna Drug Formulary API
-      - Cigna Provider Access API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Cigna Patient Access API
-      - Cigna Provider Directory API
-      - Cigna Drug Formulary API
-      - Cigna Provider Access API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Cigna Patient Access API
-      - Cigna Provider Directory API
-      - Cigna Drug Formulary API
-      - Cigna Provider Access API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Cigna Patient Access API
-      - Cigna Provider Directory API
-      - Cigna Drug Formulary API
-      - Cigna Provider Access API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Cigna Patient Access API
-      - Cigna Provider Directory API
-      - Cigna Drug Formulary API
-      - Cigna Provider Access API
+  - name: FHIR API requests
+    scope: application
+    metric: varies
+    limit: 'see Cigna developer onboarding documentation; not publicly documented'
+    notes: Practical ceilings are applied at the WAF and applied per registered application client_id.
+  - name: SMART on FHIR token issuance
+    scope: application
+    metric: varies
+    limit: 'governed by OAuth issuer; not publicly documented'
+    notes: Token issuance for member-authorized Patient Access is rate-limited by the OAuth server.
 policies:
   - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+    description: On 429 / 5xx, retry with exponential backoff and jitter; honor Retry-After when
+      present.
+  - name: SMART on FHIR
+    description: Member-authorized Patient Access requires SMART on FHIR / OAuth 2.0 authorization
+      with member consent before claims and clinical data can be queried.
+  - name: Pagination
+    description: FHIR Bundle responses are paginated via the standard Bundle.link 'next' relation.
+      Iterate cursors rather than issuing high-offset requests.
+  - name: HIPAA / CMS Compliance
+    description: Application sponsors are accountable for HIPAA-aligned handling of any PHI returned
+      by the Patient Access and Provider Access APIs.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
