@@ -1,0 +1,152 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Cigna Drug Formulary API
+  description: Public FHIR-based Drug Formulary API exposing Cigna's covered drug lists, formulary tiers, prior authorization,
+    step therapy, and quantity limits. Implements the HL7 Da Vinci PDex US Drug Formulary IG required by the CMS Interoperability
+    and Patient Access rule.
+  tags:
+  - Cigna
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: cigna
+    baseUri: https://fhir.cigna.com/DrugFormulary/v1
+    description: Cigna Drug Formulary API HTTP API.
+    resources:
+    - name: metadata
+      path: /metadata
+      operations:
+      - name: getcapabilitystatement
+        method: GET
+        description: Retrieve the FHIR capability statement
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: insuranceplan
+      path: /InsurancePlan
+      operations:
+      - name: searchformularyplan
+        method: GET
+        description: List drug formulary plans offered by Cigna
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: medicationknowledge
+      path: /MedicationKnowledge
+      operations:
+      - name: searchmedicationknowledge
+        method: GET
+        description: Search covered drugs and formulary tier, step therapy, and prior auth
+        inputParameters:
+        - name: code
+          in: query
+          type: string
+          description: RxNorm or NDC code
+        - name: DrugPlan
+          in: query
+          type: string
+          description: InsurancePlan id of the formulary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: cigna-rest
+    description: REST adapter for Cigna Drug Formulary API.
+    resources:
+    - path: /metadata
+      name: getcapabilitystatement
+      operations:
+      - method: GET
+        name: getcapabilitystatement
+        description: Retrieve the FHIR capability statement
+        call: cigna.getcapabilitystatement
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /InsurancePlan
+      name: searchformularyplan
+      operations:
+      - method: GET
+        name: searchformularyplan
+        description: List drug formulary plans offered by Cigna
+        call: cigna.searchformularyplan
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /MedicationKnowledge
+      name: searchmedicationknowledge
+      operations:
+      - method: GET
+        name: searchmedicationknowledge
+        description: Search covered drugs and formulary tier, step therapy, and prior auth
+        call: cigna.searchmedicationknowledge
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: cigna-mcp
+    transport: http
+    description: MCP adapter for Cigna Drug Formulary API for AI agent use.
+    tools:
+    - name: getcapabilitystatement
+      description: Retrieve the FHIR capability statement
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cigna.getcapabilitystatement
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: searchformularyplan
+      description: List drug formulary plans offered by Cigna
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cigna.searchformularyplan
+      with:
+        status: tools.status
+      inputParameters:
+      - name: status
+        type: string
+        description: status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: searchmedicationknowledge
+      description: Search covered drugs and formulary tier, step therapy, and prior auth
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cigna.searchmedicationknowledge
+      with:
+        code: tools.code
+        DrugPlan: tools.DrugPlan
+      inputParameters:
+      - name: code
+        type: string
+        description: RxNorm or NDC code
+      - name: DrugPlan
+        type: string
+        description: InsurancePlan id of the formulary
+      outputParameters:
+      - type: object
+        mapping: $.
