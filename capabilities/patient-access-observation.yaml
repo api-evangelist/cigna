@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Cigna Patient Access API — Observation
+  description: 'Cigna Patient Access API — Observation. 1 operations. Lead operation: Retrieve clinical observations for the
+    authenticated member. Self-contained Naftiko capability covering one Cigna business surface.'
+  tags:
+  - Cigna
+  - Observation
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CIGNA_API_KEY: CIGNA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: patient-access-observation
+    baseUri: https://fhir.cigna.com/PatientAccess/v1
+    description: Cigna Patient Access API — Observation business capability. Self-contained, no shared references.
+    resources:
+    - name: Observation
+      path: /Observation
+      operations:
+      - name: searchobservation
+        method: GET
+        description: Retrieve clinical observations for the authenticated member
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.CIGNA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: patient-access-observation-rest
+    port: 8080
+    description: REST adapter for Cigna Patient Access API — Observation. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/observation
+      name: observation
+      description: REST surface for Observation.
+      operations:
+      - method: GET
+        name: searchobservation
+        description: Retrieve clinical observations for the authenticated member
+        call: patient-access-observation.searchobservation
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: patient-access-observation-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Cigna Patient Access API — Observation. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: retrieve-clinical-observations-authenticated-member
+      description: Retrieve clinical observations for the authenticated member
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: patient-access-observation.searchobservation
+      outputParameters:
+      - type: object
+        mapping: $.

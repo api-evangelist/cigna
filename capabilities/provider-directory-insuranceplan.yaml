@@ -1,0 +1,67 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Cigna Provider Directory API — InsurancePlan
+  description: 'Cigna Provider Directory API — InsurancePlan. 1 operations. Lead operation: List Cigna insurance plans and
+    the networks associated with each. Self-contained Naftiko capability covering one Cigna business surface.'
+  tags:
+  - Cigna
+  - InsurancePlan
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CIGNA_API_KEY: CIGNA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: provider-directory-insuranceplan
+    baseUri: https://fhir.cigna.com/ProviderDirectory/v1
+    description: Cigna Provider Directory API — InsurancePlan business capability. Self-contained, no shared references.
+    resources:
+    - name: InsurancePlan
+      path: /InsurancePlan
+      operations:
+      - name: searchinsuranceplan
+        method: GET
+        description: List Cigna insurance plans and the networks associated with each
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: provider-directory-insuranceplan-rest
+    port: 8080
+    description: REST adapter for Cigna Provider Directory API — InsurancePlan. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/insuranceplan
+      name: insuranceplan
+      description: REST surface for InsurancePlan.
+      operations:
+      - method: GET
+        name: searchinsuranceplan
+        description: List Cigna insurance plans and the networks associated with each
+        call: provider-directory-insuranceplan.searchinsuranceplan
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: provider-directory-insuranceplan-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Cigna Provider Directory API — InsurancePlan. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-cigna-insurance-plans-and
+      description: List Cigna insurance plans and the networks associated with each
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: provider-directory-insuranceplan.searchinsuranceplan
+      outputParameters:
+      - type: object
+        mapping: $.

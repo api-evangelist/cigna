@@ -1,0 +1,67 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Cigna Provider Directory API — PractitionerRole
+  description: 'Cigna Provider Directory API — PractitionerRole. 1 operations. Lead operation: Search practitioner roles within
+    Cigna networks. Self-contained Naftiko capability covering one Cigna business surface.'
+  tags:
+  - Cigna
+  - PractitionerRole
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CIGNA_API_KEY: CIGNA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: provider-directory-practitionerrole
+    baseUri: https://fhir.cigna.com/ProviderDirectory/v1
+    description: Cigna Provider Directory API — PractitionerRole business capability. Self-contained, no shared references.
+    resources:
+    - name: PractitionerRole
+      path: /PractitionerRole
+      operations:
+      - name: searchpractitionerrole
+        method: GET
+        description: Search practitioner roles within Cigna networks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: provider-directory-practitionerrole-rest
+    port: 8080
+    description: REST adapter for Cigna Provider Directory API — PractitionerRole. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/practitionerrole
+      name: practitionerrole
+      description: REST surface for PractitionerRole.
+      operations:
+      - method: GET
+        name: searchpractitionerrole
+        description: Search practitioner roles within Cigna networks
+        call: provider-directory-practitionerrole.searchpractitionerrole
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: provider-directory-practitionerrole-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Cigna Provider Directory API — PractitionerRole. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: search-practitioner-roles-within-cigna
+      description: Search practitioner roles within Cigna networks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: provider-directory-practitionerrole.searchpractitionerrole
+      outputParameters:
+      - type: object
+        mapping: $.

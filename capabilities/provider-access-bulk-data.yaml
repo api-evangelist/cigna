@@ -1,0 +1,79 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Cigna Provider Access API — Bulk Data
+  description: 'Cigna Provider Access API — Bulk Data. 1 operations. Lead operation: Initiate a bulk data export for a panel
+    of attributed members. Self-contained Naftiko capability covering one Cigna business surface.'
+  tags:
+  - Cigna
+  - Bulk Data
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CIGNA_API_KEY: CIGNA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: provider-access-bulk-data
+    baseUri: https://fhir.cigna.com/ProviderAccess/v1
+    description: Cigna Provider Access API — Bulk Data business capability. Self-contained, no shared references.
+    resources:
+    - name: Group-groupId-$export
+      path: /Group/{groupId}/$export
+      operations:
+      - name: bulkexportgroup
+        method: GET
+        description: Initiate a bulk data export for a panel of attributed members
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.CIGNA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: provider-access-bulk-data-rest
+    port: 8080
+    description: REST adapter for Cigna Provider Access API — Bulk Data. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/group/{groupid}/export
+      name: group-groupid-export
+      description: REST surface for Group-groupId-$export.
+      operations:
+      - method: GET
+        name: bulkexportgroup
+        description: Initiate a bulk data export for a panel of attributed members
+        call: provider-access-bulk-data.bulkexportgroup
+        with:
+          groupId: rest.groupId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: provider-access-bulk-data-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Cigna Provider Access API — Bulk Data. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: initiate-bulk-data-export-panel
+      description: Initiate a bulk data export for a panel of attributed members
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: provider-access-bulk-data.bulkexportgroup
+      with:
+        groupId: tools.groupId
+      outputParameters:
+      - type: object
+        mapping: $.

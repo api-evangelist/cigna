@@ -1,0 +1,67 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Cigna Provider Directory API — Organization
+  description: 'Cigna Provider Directory API — Organization. 1 operations. Lead operation: Search organizations in the Cigna
+    network. Self-contained Naftiko capability covering one Cigna business surface.'
+  tags:
+  - Cigna
+  - Organization
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CIGNA_API_KEY: CIGNA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: provider-directory-organization
+    baseUri: https://fhir.cigna.com/ProviderDirectory/v1
+    description: Cigna Provider Directory API — Organization business capability. Self-contained, no shared references.
+    resources:
+    - name: Organization
+      path: /Organization
+      operations:
+      - name: searchorganization
+        method: GET
+        description: Search organizations in the Cigna network
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: provider-directory-organization-rest
+    port: 8080
+    description: REST adapter for Cigna Provider Directory API — Organization. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/organization
+      name: organization
+      description: REST surface for Organization.
+      operations:
+      - method: GET
+        name: searchorganization
+        description: Search organizations in the Cigna network
+        call: provider-directory-organization.searchorganization
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: provider-directory-organization-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Cigna Provider Directory API — Organization. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: search-organizations-cigna-network
+      description: Search organizations in the Cigna network
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: provider-directory-organization.searchorganization
+      outputParameters:
+      - type: object
+        mapping: $.

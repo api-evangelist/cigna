@@ -1,0 +1,82 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Cigna Drug Formulary API — MedicationKnowledge
+  description: 'Cigna Drug Formulary API — MedicationKnowledge. 1 operations. Lead operation: Search covered drugs and formulary
+    tier, step therapy, and prior auth. Self-contained Naftiko capability covering one Cigna business surface.'
+  tags:
+  - Cigna
+  - MedicationKnowledge
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CIGNA_API_KEY: CIGNA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: drug-formulary-medicationknowledge
+    baseUri: https://fhir.cigna.com/DrugFormulary/v1
+    description: Cigna Drug Formulary API — MedicationKnowledge business capability. Self-contained, no shared references.
+    resources:
+    - name: MedicationKnowledge
+      path: /MedicationKnowledge
+      operations:
+      - name: searchmedicationknowledge
+        method: GET
+        description: Search covered drugs and formulary tier, step therapy, and prior auth
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: code
+          in: query
+          type: string
+          description: RxNorm or NDC code
+        - name: DrugPlan
+          in: query
+          type: string
+          description: InsurancePlan id of the formulary
+  exposes:
+  - type: rest
+    namespace: drug-formulary-medicationknowledge-rest
+    port: 8080
+    description: REST adapter for Cigna Drug Formulary API — MedicationKnowledge. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/medicationknowledge
+      name: medicationknowledge
+      description: REST surface for MedicationKnowledge.
+      operations:
+      - method: GET
+        name: searchmedicationknowledge
+        description: Search covered drugs and formulary tier, step therapy, and prior auth
+        call: drug-formulary-medicationknowledge.searchmedicationknowledge
+        with:
+          code: rest.code
+          DrugPlan: rest.DrugPlan
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: drug-formulary-medicationknowledge-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Cigna Drug Formulary API — MedicationKnowledge. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: search-covered-drugs-and-formulary
+      description: Search covered drugs and formulary tier, step therapy, and prior auth
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: drug-formulary-medicationknowledge.searchmedicationknowledge
+      with:
+        code: tools.code
+        DrugPlan: tools.DrugPlan
+      outputParameters:
+      - type: object
+        mapping: $.

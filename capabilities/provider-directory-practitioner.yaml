@@ -1,0 +1,112 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Cigna Provider Directory API — Practitioner
+  description: 'Cigna Provider Directory API — Practitioner. 2 operations. Lead operation: Search practitioners in the Cigna
+    network. Self-contained Naftiko capability covering one Cigna business surface.'
+  tags:
+  - Cigna
+  - Practitioner
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CIGNA_API_KEY: CIGNA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: provider-directory-practitioner
+    baseUri: https://fhir.cigna.com/ProviderDirectory/v1
+    description: Cigna Provider Directory API — Practitioner business capability. Self-contained, no shared references.
+    resources:
+    - name: Practitioner
+      path: /Practitioner
+      operations:
+      - name: searchpractitioner
+        method: GET
+        description: Search practitioners in the Cigna network
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: query
+          type: string
+        - name: identifier
+          in: query
+          type: string
+    - name: metadata
+      path: /metadata
+      operations:
+      - name: getcapabilitystatement
+        method: GET
+        description: Retrieve the FHIR capability statement
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: provider-directory-practitioner-rest
+    port: 8080
+    description: REST adapter for Cigna Provider Directory API — Practitioner. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/practitioner
+      name: practitioner
+      description: REST surface for Practitioner.
+      operations:
+      - method: GET
+        name: searchpractitioner
+        description: Search practitioners in the Cigna network
+        call: provider-directory-practitioner.searchpractitioner
+        with:
+          name: rest.name
+          identifier: rest.identifier
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/metadata
+      name: metadata
+      description: REST surface for metadata.
+      operations:
+      - method: GET
+        name: getcapabilitystatement
+        description: Retrieve the FHIR capability statement
+        call: provider-directory-practitioner.getcapabilitystatement
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: provider-directory-practitioner-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Cigna Provider Directory API — Practitioner. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: search-practitioners-cigna-network
+      description: Search practitioners in the Cigna network
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: provider-directory-practitioner.searchpractitioner
+      with:
+        name: tools.name
+        identifier: tools.identifier
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-fhir-capability-statement
+      description: Retrieve the FHIR capability statement
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: provider-directory-practitioner.getcapabilitystatement
+      outputParameters:
+      - type: object
+        mapping: $.

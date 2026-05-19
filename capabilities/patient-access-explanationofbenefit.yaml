@@ -1,0 +1,78 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Cigna Patient Access API — ExplanationOfBenefit
+  description: 'Cigna Patient Access API — ExplanationOfBenefit. 1 operations. Lead operation: Retrieve EOB claims data for
+    the authenticated member. Self-contained Naftiko capability covering one Cigna business surface.'
+  tags:
+  - Cigna
+  - ExplanationOfBenefit
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CIGNA_API_KEY: CIGNA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: patient-access-explanationofbenefit
+    baseUri: https://fhir.cigna.com/PatientAccess/v1
+    description: Cigna Patient Access API — ExplanationOfBenefit business capability. Self-contained, no shared references.
+    resources:
+    - name: ExplanationOfBenefit
+      path: /ExplanationOfBenefit
+      operations:
+      - name: searchexplanationofbenefit
+        method: GET
+        description: Retrieve EOB claims data for the authenticated member
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: patient
+          in: query
+          type: string
+    authentication:
+      type: bearer
+      token: '{{env.CIGNA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: patient-access-explanationofbenefit-rest
+    port: 8080
+    description: REST adapter for Cigna Patient Access API — ExplanationOfBenefit. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/explanationofbenefit
+      name: explanationofbenefit
+      description: REST surface for ExplanationOfBenefit.
+      operations:
+      - method: GET
+        name: searchexplanationofbenefit
+        description: Retrieve EOB claims data for the authenticated member
+        call: patient-access-explanationofbenefit.searchexplanationofbenefit
+        with:
+          patient: rest.patient
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: patient-access-explanationofbenefit-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Cigna Patient Access API — ExplanationOfBenefit. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: retrieve-eob-claims-data-authenticated
+      description: Retrieve EOB claims data for the authenticated member
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: patient-access-explanationofbenefit.searchexplanationofbenefit
+      with:
+        patient: tools.patient
+      outputParameters:
+      - type: object
+        mapping: $.

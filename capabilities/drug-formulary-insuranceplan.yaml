@@ -1,0 +1,107 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Cigna Drug Formulary API — InsurancePlan
+  description: 'Cigna Drug Formulary API — InsurancePlan. 2 operations. Lead operation: List drug formulary plans offered
+    by Cigna. Self-contained Naftiko capability covering one Cigna business surface.'
+  tags:
+  - Cigna
+  - InsurancePlan
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CIGNA_API_KEY: CIGNA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: drug-formulary-insuranceplan
+    baseUri: https://fhir.cigna.com/DrugFormulary/v1
+    description: Cigna Drug Formulary API — InsurancePlan business capability. Self-contained, no shared references.
+    resources:
+    - name: InsurancePlan
+      path: /InsurancePlan
+      operations:
+      - name: searchformularyplan
+        method: GET
+        description: List drug formulary plans offered by Cigna
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+    - name: metadata
+      path: /metadata
+      operations:
+      - name: getcapabilitystatement
+        method: GET
+        description: Retrieve the FHIR capability statement
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: drug-formulary-insuranceplan-rest
+    port: 8080
+    description: REST adapter for Cigna Drug Formulary API — InsurancePlan. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/insuranceplan
+      name: insuranceplan
+      description: REST surface for InsurancePlan.
+      operations:
+      - method: GET
+        name: searchformularyplan
+        description: List drug formulary plans offered by Cigna
+        call: drug-formulary-insuranceplan.searchformularyplan
+        with:
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/metadata
+      name: metadata
+      description: REST surface for metadata.
+      operations:
+      - method: GET
+        name: getcapabilitystatement
+        description: Retrieve the FHIR capability statement
+        call: drug-formulary-insuranceplan.getcapabilitystatement
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: drug-formulary-insuranceplan-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Cigna Drug Formulary API — InsurancePlan. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-drug-formulary-plans-offered
+      description: List drug formulary plans offered by Cigna
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: drug-formulary-insuranceplan.searchformularyplan
+      with:
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-fhir-capability-statement
+      description: Retrieve the FHIR capability statement
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: drug-formulary-insuranceplan.getcapabilitystatement
+      outputParameters:
+      - type: object
+        mapping: $.

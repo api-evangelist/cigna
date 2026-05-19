@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Cigna Patient Access API — Encounter
+  description: 'Cigna Patient Access API — Encounter. 1 operations. Lead operation: Retrieve encounter records for the authenticated
+    member. Self-contained Naftiko capability covering one Cigna business surface.'
+  tags:
+  - Cigna
+  - Encounter
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CIGNA_API_KEY: CIGNA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: patient-access-encounter
+    baseUri: https://fhir.cigna.com/PatientAccess/v1
+    description: Cigna Patient Access API — Encounter business capability. Self-contained, no shared references.
+    resources:
+    - name: Encounter
+      path: /Encounter
+      operations:
+      - name: searchencounter
+        method: GET
+        description: Retrieve encounter records for the authenticated member
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.CIGNA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: patient-access-encounter-rest
+    port: 8080
+    description: REST adapter for Cigna Patient Access API — Encounter. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/encounter
+      name: encounter
+      description: REST surface for Encounter.
+      operations:
+      - method: GET
+        name: searchencounter
+        description: Retrieve encounter records for the authenticated member
+        call: patient-access-encounter.searchencounter
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: patient-access-encounter-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Cigna Patient Access API — Encounter. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: retrieve-encounter-records-authenticated-member
+      description: Retrieve encounter records for the authenticated member
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: patient-access-encounter.searchencounter
+      outputParameters:
+      - type: object
+        mapping: $.
