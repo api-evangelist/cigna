@@ -156,6 +156,8 @@ common:
     url: spectral/cigna-spectral.yml
   - type: NaftikoCapabilities
     url: naftiko/cigna-capabilities.yml
+  - type: LLMsTxt
+    url: https://developer.cigna.com/llms.txt
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
