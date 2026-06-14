@@ -1,0 +1,1112 @@
+"""
+Cigna Healthcare GraphQL Schema
+Conceptual schema synthesized from Cigna Developer Portal APIs:
+- Patient Access API (FHIR R4 / SMART on FHIR)
+- Provider Directory API (FHIR R4 / Da Vinci PDex Plan Network)
+- Drug Formulary API (FHIR R4 / Da Vinci US Drug Formulary)
+- Provider Access API (FHIR R4 / Da Vinci PDex)
+Source: https://developer.cigna.com/
+"""
+
+# ─── Member and Identity ──────────────────────────────────────────────────────
+
+"""A Cigna health plan member with demographic and enrollment information."""
+type Member {
+  id: ID!
+  memberId: MemberID!
+  profile: MemberProfile!
+  plans: [InsurancePlan!]!
+  claims(dateFrom: String, dateTo: String): [Claim!]!
+  eobs: [ExplanationOfBenefits!]!
+  referrals: [Referral!]!
+  prescriptionHistory: PrescriptionHistory
+  wellness: Wellness
+  eap: EAP
+  behavioralHealth: BehavioralHealth
+  authorizations: [PriorAuthorization!]!
+  createdAt: String
+  updatedAt: String
+}
+
+"""Detailed profile for a Cigna member including contact and demographic data."""
+type MemberProfile {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  dateOfBirth: String!
+  gender: String
+  email: String
+  phone: String
+  address: Address
+  subscriberId: String!
+  groupNumber: String
+  relationship: String
+  language: String
+}
+
+"""Member identification numbers used across Cigna systems."""
+type MemberID {
+  memberId: String!
+  subscriberId: String!
+  groupNumber: String
+  memberNumber: String!
+  cardIssueDate: String
+  suffix: String
+}
+
+# ─── Address (shared scalar object) ──────────────────────────────────────────
+
+"""A structured postal address."""
+type Address {
+  line1: String
+  line2: String
+  city: String
+  state: String
+  postalCode: String
+  country: String
+}
+
+# ─── Insurance Plans and Benefits ────────────────────────────────────────────
+
+"""A Cigna health insurance product (HMO, PPO, EPO, HDHP, etc.)."""
+type InsurancePlan {
+  id: ID!
+  name: String!
+  planCode: String!
+  details: PlanDetails!
+  benefits: PlanBenefits!
+  networkType: NetworkType!
+  deductible: Deductible!
+  outOfPocketMax: OutOfPocketMax!
+  dental: Dental
+  vision: Vision
+  pharmacyBenefits: PharmacyBenefits
+  effectiveDate: String!
+  terminationDate: String
+  marketSegment: String
+  metalLevel: String
+  hmo: Boolean
+  ppo: Boolean
+  hdhp: Boolean
+}
+
+"""Detailed attributes of a Cigna insurance plan."""
+type PlanDetails {
+  id: ID!
+  planCode: String!
+  groupName: String
+  groupNumber: String
+  employerName: String
+  marketSegment: String
+  lineOfBusiness: String
+  state: String
+  planYear: Int
+  renewalDate: String
+  fundingType: String
+  pdfUrl: String
+}
+
+"""Summary of benefits covered under a Cigna plan."""
+type PlanBenefits {
+  id: ID!
+  planId: ID!
+  medicalBenefits: [BenefitItem!]!
+  preventiveCare: Preventive
+  behavioralHealth: BehavioralHealth
+  mentalHealth: MentalHealth
+  eap: EAP
+  wellness: Wellness
+  telehealth: Telehealth
+  virtualCare: VirtualCare
+  pharmacyBenefits: PharmacyBenefits
+  dental: Dental
+  vision: Vision
+}
+
+"""A single benefit line item within a plan's benefit summary."""
+type BenefitItem {
+  serviceName: String!
+  inNetworkCost: String
+  outOfNetworkCost: String
+  requiresReferral: Boolean
+  requiresPriorAuth: Boolean
+  notes: String
+}
+
+"""Annual deductible amounts and accumulation for a member or plan."""
+type Deductible {
+  id: ID!
+  individualAmount: Float!
+  familyAmount: Float!
+  individualAccumulated: Float
+  familyAccumulated: Float
+  inNetwork: Float
+  outOfNetwork: Float
+  combinedMedicalRx: Boolean
+  resetDate: String
+  period: String
+}
+
+"""Out-of-pocket maximum limits applicable to a member or plan."""
+type OutOfPocketMax {
+  id: ID!
+  individualAmount: Float!
+  familyAmount: Float!
+  individualAccumulated: Float
+  familyAccumulated: Float
+  inNetwork: Float
+  outOfNetwork: Float
+  includesDeductible: Boolean
+  includesRx: Boolean
+  resetDate: String
+}
+
+"""Fixed cost-sharing amounts for specific categories of service."""
+type Copay {
+  id: ID!
+  serviceType: String!
+  amount: Float!
+  appliesBeforeDeductible: Boolean
+  inNetwork: Boolean
+  notes: String
+}
+
+"""Percentage-based cost sharing applied after the deductible is met."""
+type Coinsurance {
+  id: ID!
+  serviceType: String!
+  memberPercentage: Float!
+  inNetwork: Boolean
+  appliesAfterDeductible: Boolean
+  notes: String
+}
+
+# ─── Network Types ────────────────────────────────────────────────────────────
+
+"""Classification of provider network model."""
+type NetworkType {
+  id: ID!
+  name: String!
+  code: String!
+  description: String
+  requiresReferral: Boolean
+  outOfNetworkCoverage: Boolean
+  plans: [InsurancePlan!]
+}
+
+"""A provider that participates in a specific Cigna network."""
+type NetworkProvider {
+  id: ID!
+  provider: Provider!
+  networkType: NetworkType!
+  effectiveDate: String
+  terminationDate: String
+  acceptingNewPatients: Boolean
+  inNetwork: InNetwork
+  outOfNetwork: OutOfNetwork
+  preferredStatus: PreferredProvider
+}
+
+"""Designation of a provider as preferred within a tiered network."""
+type PreferredProvider {
+  id: ID!
+  providerId: ID!
+  tier: String!
+  tierLabel: String
+  effectiveDate: String
+  costSharingReduction: Float
+}
+
+"""Cost-sharing and access details for in-network provider services."""
+type InNetwork {
+  id: ID!
+  copay: Copay
+  coinsurance: Coinsurance
+  deductibleApplies: Boolean
+  priorAuthRequired: Boolean
+  referralRequired: Boolean
+}
+
+"""Cost-sharing and access details for out-of-network provider services."""
+type OutOfNetwork {
+  id: ID!
+  coinsurance: Coinsurance
+  deductibleApplies: Boolean
+  balanceBillingAllowed: Boolean
+  notes: String
+}
+
+# ─── Prior Authorization ──────────────────────────────────────────────────────
+
+"""An authorization requirement for a covered service or procedure."""
+type PriorAuthorization {
+  id: ID!
+  member: Member!
+  serviceType: String!
+  procedureCode: ProcedureCode
+  diagnosisCodes: [ICD10Code!]
+  requestedBy: Provider
+  status: AuthorizationStatus!
+  requests: [AuthorizationRequest!]!
+  effectiveDate: String
+  expirationDate: String
+  approvedUnits: Int
+  notes: String
+  createdAt: String!
+  updatedAt: String!
+}
+
+"""A submitted request for prior authorization with clinical justification."""
+type AuthorizationRequest {
+  id: ID!
+  authorizationId: ID!
+  requestDate: String!
+  requestingProvider: Provider!
+  facilityProvider: Provider
+  diagnoses: [Diagnosis!]!
+  procedures: [ProcedureCode!]!
+  clinicalNotes: String
+  attachments: [String]
+  urgentRequest: Boolean
+  clinicalReview: ClinicalReview
+  medicalNecessity: MedicalNecessity
+  status: AuthorizationStatus!
+}
+
+"""Current status and disposition of an authorization request."""
+type AuthorizationStatus {
+  id: ID!
+  authorizationId: ID!
+  status: String!
+  decisionDate: String
+  decisionReason: String
+  expirationDate: String
+  approvedServiceCount: Int
+  denialCode: String
+  appealDeadline: String
+  reviewerName: String
+}
+
+"""Clinical review details associated with an authorization decision."""
+type ClinicalReview {
+  id: ID!
+  reviewerId: String
+  reviewDate: String!
+  reviewType: String
+  clinicalCriteria: String
+  outcome: String!
+  notes: String
+  appealable: Boolean
+}
+
+"""Medical necessity determination for an authorization request."""
+type MedicalNecessity {
+  id: ID!
+  criteriaSet: String
+  criteriaMet: Boolean!
+  supportingEvidence: [String]
+  determination: String!
+  determinationDate: String!
+  reviewerSpecialty: String
+}
+
+# ─── Claims and Payments ──────────────────────────────────────────────────────
+
+"""A medical claim submitted to Cigna for services rendered."""
+type Claim {
+  id: ID!
+  claimNumber: String!
+  member: Member!
+  provider: Provider!
+  facilityProvider: Provider
+  serviceDate: String!
+  receivedDate: String!
+  claimType: String!
+  claimLines: [ClaimLine!]!
+  totalBilled: Float!
+  totalAllowed: Float
+  planPaid: Float
+  memberResponsibility: Float
+  status: ClaimStatus!
+  payment: ClaimPayment
+  eob: ExplanationOfBenefits
+  diagnoses: [Diagnosis!]!
+  priorAuthorizationId: String
+}
+
+"""An individual line item on a claim representing a single service or supply."""
+type ClaimLine {
+  id: ID!
+  claimId: ID!
+  lineNumber: Int!
+  serviceDate: String!
+  procedureCode: ProcedureCode!
+  diagnosisCode: ICD10Code
+  quantity: Float
+  billedAmount: Float!
+  allowedAmount: Float
+  planPaidAmount: Float
+  memberCopay: Float
+  memberCoinsurance: Float
+  memberDeductible: Float
+  adjustmentReason: String
+  status: String
+}
+
+"""Current processing status of a claim."""
+type ClaimStatus {
+  id: ID!
+  claimId: ID!
+  status: String!
+  statusDate: String!
+  statusReason: String
+  pendingReason: String
+  estimatedDecisionDate: String
+}
+
+"""Payment information for a finalized claim."""
+type ClaimPayment {
+  id: ID!
+  claimId: ID!
+  paymentAmount: Float!
+  paymentDate: String!
+  paymentMethod: String
+  checkNumber: String
+  eftTraceNumber: String
+  payeeName: String
+  payeeNPI: String
+}
+
+"""Explanation of Benefits summary object."""
+type EOB {
+  id: ID!
+  eobNumber: String!
+  memberId: ID!
+  claimId: ID!
+  serviceDate: String!
+  totalBilled: Float!
+  totalAllowed: Float!
+  planPaid: Float!
+  memberResponsibility: Float!
+  issueDate: String!
+  pdfUrl: String
+}
+
+"""Detailed Explanation of Benefits with full cost breakdown."""
+type ExplanationOfBenefits {
+  id: ID!
+  eobNumber: String!
+  member: Member!
+  claim: Claim!
+  provider: Provider!
+  serviceDate: String!
+  serviceDescription: String
+  totalBilled: Float!
+  notCovered: Float
+  discount: Float
+  deductibleApplied: Float
+  copayApplied: Float
+  coinsuranceApplied: Float
+  planPaid: Float!
+  memberResponsibility: Float!
+  adjustmentReasons: [String]
+  issueDate: String!
+  pdfUrl: String
+}
+
+# ─── Provider Directory ───────────────────────────────────────────────────────
+
+"""A licensed healthcare provider or practitioner listed in the Cigna directory."""
+type Provider {
+  id: ID!
+  npi: String!
+  firstName: String
+  lastName: String
+  organizationName: String
+  displayName: String!
+  providerType: String!
+  specialty: [String!]
+  taxonomyCode: String
+  address: Address!
+  phoneNumber: String
+  faxNumber: String
+  acceptingNewPatients: Boolean
+  boardCertified: Boolean
+  languages: [String]
+  hospitalAffiliations: [Hospital]
+  groups: [PhysicyGroup]
+  networks: [NetworkProvider!]
+  locations: [ProviderLocation]
+  telehealth: Boolean
+}
+
+"""A searchable directory of Cigna network providers and facilities."""
+type ProviderDirectory {
+  id: ID!
+  planId: ID!
+  lastUpdated: String!
+  totalProviders: Int!
+  providers(
+    name: String
+    specialty: String
+    location: String
+    radius: Int
+    acceptingNewPatients: Boolean
+    providerType: String
+    limit: Int
+    offset: Int
+  ): [NetworkProvider!]!
+}
+
+"""A physical location where a provider offers services."""
+type ProviderLocation {
+  id: ID!
+  providerId: ID!
+  address: Address!
+  phoneNumber: String
+  hours: [OfficeHours]
+  acceptingNewPatients: Boolean
+  accessibilityFeatures: [String]
+  parkingAvailable: Boolean
+}
+
+"""Office hours for a provider location."""
+type OfficeHours {
+  dayOfWeek: String!
+  openTime: String
+  closeTime: String
+  closed: Boolean
+}
+
+"""A primary care physician with panel and accepting-patients information."""
+type PCP {
+  id: ID!
+  provider: Provider!
+  panelSize: Int
+  acceptingNewPatients: Boolean!
+  pcpSpecialties: [String]
+  autoAssignable: Boolean
+  networks: [NetworkType!]
+}
+
+"""A specialist provider with specialty taxonomy and referral requirements."""
+type Specialist {
+  id: ID!
+  provider: Provider!
+  primarySpecialty: String!
+  subSpecialties: [String]
+  boardCertifications: [String]
+  referralRequired: Boolean
+  priorAuthTypes: [String]
+}
+
+"""A medical practice or physician group with affiliated providers."""
+type PhysicyGroup {
+  id: ID!
+  groupNPI: String!
+  groupName: String!
+  taxId: String
+  address: Address!
+  phoneNumber: String
+  providers: [Provider!]!
+  specialties: [String]
+  networks: [NetworkType!]
+}
+
+"""An acute care hospital or health system facility."""
+type Hospital {
+  id: ID!
+  npi: String!
+  name: String!
+  facilityType: String
+  address: Address!
+  phoneNumber: String
+  emergencyRoom: EmergencyRoom
+  accreditations: [String]
+  bedCount: Int
+  networks: [NetworkType!]!
+  specialtyServices: [String]
+  traumaLevel: String
+}
+
+"""An urgent care center with hours and plan acceptance information."""
+type UrgentCare {
+  id: ID!
+  npi: String!
+  name: String!
+  address: Address!
+  phoneNumber: String
+  hours: [OfficeHours!]
+  walkinAccepted: Boolean
+  labServices: Boolean
+  imagingServices: Boolean
+  networks: [NetworkType!]!
+  copay: Copay
+}
+
+"""An emergency department with 24-hour availability data."""
+type EmergencyRoom {
+  id: ID!
+  hospitalId: ID!
+  name: String
+  phoneNumber: String
+  traumaLevel: String
+  averageWaitMinutes: Int
+  open24Hours: Boolean
+  pediatricCapability: Boolean
+}
+
+"""A virtual care provider or telehealth platform available under the plan."""
+type Telehealth {
+  id: ID!
+  platformName: String!
+  url: String
+  phoneNumber: String
+  availableSpecialties: [String!]!
+  availableHours: String
+  memberCost: Float
+  requiresAppointment: Boolean
+  mdliveIntegrated: Boolean
+}
+
+"""Virtual care services available to a member under their plan."""
+type VirtualCare {
+  id: ID!
+  planId: ID!
+  telehealth: Telehealth
+  chatSupport: Boolean
+  asyncMessaging: Boolean
+  mentalHealthVirtual: Boolean
+  coverageNotes: String
+  memberCopay: Float
+}
+
+# ─── Pharmacy and Drug Benefits ───────────────────────────────────────────────
+
+"""A retail, mail-order, or specialty pharmacy in the Cigna network."""
+type Pharmacy {
+  id: ID!
+  ncpdpId: String!
+  name: String!
+  pharmacyType: String!
+  address: Address!
+  phoneNumber: String
+  faxNumber: String
+  hours: [OfficeHours]
+  driveThrough: Boolean
+  open24Hours: Boolean
+  mailOrder: Boolean
+  specialty: Boolean
+  networks: [NetworkType!]!
+  acceptedPlans: [InsurancePlan!]
+}
+
+"""Summary of a member's pharmacy benefit."""
+type PharmacyBenefits {
+  id: ID!
+  planId: ID!
+  formularyId: String
+  retailDaySupply: [Int]
+  mailOrderDaySupply: [Int]
+  specialtyDaySupply: [Int]
+  tiers: [Tier!]!
+  priorAuthRequired: [String]
+  stepTherapyRequired: [String]
+  quantityLimitsApply: Boolean
+  mailOrderRequired: Boolean
+  mailOrderSavings: Boolean
+}
+
+"""A drug listed on the Cigna formulary with tier and coverage details."""
+type FormularyDrug {
+  id: ID!
+  rxNormCode: String
+  ndcCode: String
+  drugName: String!
+  genericName: String
+  brandName: String
+  tier: Tier!
+  formularyStatus: String!
+  coverage: DrugCoverage!
+  priorAuthRequired: Boolean
+  stepTherapyRequired: Boolean
+  quantityLimit: QuantityLimit
+  alternatives: [FormularyDrug]
+  drugClass: String
+  routeOfAdministration: String
+}
+
+"""Formulary tier classification affecting cost sharing for drugs."""
+type Tier {
+  id: ID!
+  tierNumber: Int!
+  tierName: String!
+  tierLabel: String
+  retailCopay30Day: Float
+  retailCopay90Day: Float
+  mailOrderCopay90Day: Float
+  coinsurancePercent: Float
+  description: String
+}
+
+"""Quantity limits applicable to a formulary drug."""
+type QuantityLimit {
+  limitAmount: Float
+  limitDays: Int
+  description: String
+}
+
+"""Coverage details for a specific drug including restrictions."""
+type DrugCoverage {
+  id: ID!
+  drugId: ID!
+  covered: Boolean!
+  coverageStatus: String!
+  priorAuthCriteria: String
+  stepTherapyProtocol: String
+  quantityLimitDetails: String
+  notCoveredReason: String
+  effectiveDate: String
+  terminationDate: String
+}
+
+"""A pharmacy claim for a dispensed prescription."""
+type RxClaim {
+  id: ID!
+  claimNumber: String!
+  memberId: ID!
+  pharmacyId: ID!
+  dispensedDate: String!
+  drug: FormularyDrug!
+  prescribingProvider: Provider
+  daysSupply: Int!
+  quantityDispensed: Float!
+  totalCost: Float!
+  planPaid: Float!
+  memberPaid: Float!
+  copayApplied: Float
+  deductibleApplied: Float
+  coinsuranceApplied: Float
+  refillNumber: Int
+}
+
+"""A member's prescription fill history within the benefit period."""
+type PrescriptionHistory {
+  id: ID!
+  memberId: ID!
+  benefitPeriodStart: String!
+  benefitPeriodEnd: String!
+  totalRxClaims: Int!
+  totalMemberSpend: Float
+  rxClaims: [RxClaim!]!
+}
+
+# ─── Referrals and Clinical Coding ───────────────────────────────────────────
+
+"""A referral from a PCP to a specialist or facility."""
+type Referral {
+  id: ID!
+  referralNumber: String!
+  member: Member!
+  referringProvider: PCP!
+  referredToProvider: Provider!
+  referralDate: String!
+  effectiveDate: String!
+  expirationDate: String
+  diagnosisCodes: [ICD10Code!]
+  serviceType: String
+  approvedVisits: Int
+  usedVisits: Int
+  status: String!
+  notes: String
+}
+
+"""A diagnosis associated with a claim, authorization, or encounter."""
+type Diagnosis {
+  id: ID!
+  icd10Code: ICD10Code!
+  description: String!
+  diagnosisType: String
+  admittingDiagnosis: Boolean
+  principalDiagnosis: Boolean
+  presentOnAdmission: Boolean
+}
+
+"""International Classification of Diseases 10th Revision diagnosis code."""
+type ICD10Code {
+  code: String!
+  description: String!
+  category: String
+  chapter: String
+  valid: Boolean
+  billable: Boolean
+}
+
+"""A procedure identifier used in claims and authorization requests."""
+type ProcedureCode {
+  code: String!
+  codeSystem: String!
+  description: String!
+  modifier: [String]
+  requiresPriorAuth: Boolean
+}
+
+"""Current Procedural Terminology code for professional services."""
+type CPTCode {
+  code: String!
+  description: String!
+  category: String
+  subcategory: String
+  globalPeriod: String
+  requiresPriorAuth: Boolean
+  typicalFee: Float
+}
+
+# ─── Wellness and Behavioral Health ──────────────────────────────────────────
+
+"""Preventive care services covered at no cost-sharing under ACA requirements."""
+type Preventive {
+  id: ID!
+  planId: ID!
+  coveredServices: [String!]!
+  ageGenderRecommendations: [String]
+  immunizations: [String]
+  screenings: [String]
+  annualExamCovered: Boolean
+  memberCost: Float
+  notes: String
+}
+
+"""Wellness program offerings available to a member."""
+type Wellness {
+  id: ID!
+  memberId: ID!
+  programName: String
+  incentivesAvailable: Boolean
+  maxIncentiveAmount: Float
+  incentivesEarned: Float
+  screeningsCompleted: [String]
+  coachingAvailable: Boolean
+  tobaccoCessationCovered: Boolean
+  weightManagementCovered: Boolean
+  fitnessReimbursement: Float
+  onlineToolsUrl: String
+}
+
+"""Employee Assistance Program with counseling and work-life services."""
+type EAP {
+  id: ID!
+  programName: String!
+  sessionsAllowed: Int!
+  sessionsUsed: Int
+  sessionsRemaining: Int
+  coverageDescription: String
+  phoneNumber: String
+  onlinePortalUrl: String
+  counselingTypes: [String]
+  workLifeServices: [String]
+  legalConsultation: Boolean
+  financialConsultation: Boolean
+}
+
+"""Behavioral health benefits covering mental health and substance use disorders."""
+type BehavioralHealth {
+  id: ID!
+  planId: ID!
+  mentalHealth: MentalHealth!
+  substanceUseDisorder: Boolean
+  inPatientCovered: Boolean
+  residentialCovered: Boolean
+  intensiveOutpatientCovered: Boolean
+  appliedBehaviorAnalysis: Boolean
+  parityCompliant: Boolean
+  networkSize: Int
+}
+
+"""Mental health benefit details for a plan."""
+type MentalHealth {
+  id: ID!
+  planId: ID!
+  outpatientSessionLimit: Int
+  inpatientDayLimit: Int
+  sessionLimitApplies: Boolean
+  virtualVisitCovered: Boolean
+  psychiatryIncluded: Boolean
+  psychologyIncluded: Boolean
+  copay: Copay
+  coinsurance: Coinsurance
+  priorAuthRequired: Boolean
+}
+
+# ─── Ancillary Benefits ───────────────────────────────────────────────────────
+
+"""Dental plan benefits including preventive, basic, and major service coverage."""
+type Dental {
+  id: ID!
+  planName: String
+  annualMaximum: Float
+  orthodontiaLifetimeMax: Float
+  preventiveCovered: Boolean
+  preventiveCoinsurance: Float
+  basicCoinsurance: Float
+  majorCoinsurance: Float
+  orthodontiaCovered: Boolean
+  waitingPeriodMonths: Int
+  deductible: Float
+  networkRequired: Boolean
+}
+
+"""Vision plan benefits including exam, frames, and contact lens allowances."""
+type Vision {
+  id: ID!
+  planName: String
+  examFrequencyMonths: Int
+  examCopay: Float
+  framesAllowance: Float
+  contactLensAllowance: Float
+  contactLensFitting: Float
+  lasikDiscount: Boolean
+  networkRequired: Boolean
+  outOfNetworkReimbursement: Boolean
+}
+
+# ─── API Infrastructure ───────────────────────────────────────────────────────
+
+"""An API credential used by a registered application to authenticate requests."""
+type APIKey {
+  id: ID!
+  keyId: String!
+  name: String!
+  environment: String!
+  scopes: [String!]!
+  createdAt: String!
+  expiresAt: String
+  status: String!
+  lastUsedAt: String
+}
+
+"""An OAuth 2.0 / SMART on FHIR access token for authorized API requests."""
+type Token {
+  accessToken: String!
+  tokenType: String!
+  expiresIn: Int!
+  scope: String!
+  idToken: String
+  refreshToken: String
+  patient: String
+  issuedAt: String!
+}
+
+"""A webhook endpoint registered to receive Cigna event notifications."""
+type Webhook {
+  id: ID!
+  url: String!
+  events: [String!]!
+  secret: String
+  active: Boolean!
+  createdAt: String!
+  updatedAt: String!
+  lastDeliveryAt: String
+  lastDeliveryStatus: String
+  failureCount: Int
+}
+
+# ─── Root Operations ──────────────────────────────────────────────────────────
+
+type Query {
+  """Retrieve a member by their Cigna member ID."""
+  member(id: ID!): Member
+
+  """Retrieve a member's full profile."""
+  memberProfile(memberId: ID!): MemberProfile
+
+  """Retrieve a specific insurance plan."""
+  insurancePlan(planId: ID!): InsurancePlan
+
+  """Retrieve the benefits associated with a plan."""
+  planBenefits(planId: ID!): PlanBenefits
+
+  """Search for providers in the Cigna network."""
+  providers(
+    name: String
+    specialty: String
+    networkType: String
+    location: String
+    radius: Int
+    acceptingNewPatients: Boolean
+    providerType: String
+    limit: Int
+    offset: Int
+  ): [NetworkProvider!]!
+
+  """Retrieve a specific provider by ID."""
+  provider(id: ID!): Provider
+
+  """Retrieve the provider directory for a plan."""
+  providerDirectory(planId: ID!): ProviderDirectory
+
+  """Retrieve a PCP by provider ID."""
+  pcp(id: ID!): PCP
+
+  """Retrieve a specialist by provider ID."""
+  specialist(id: ID!): Specialist
+
+  """Retrieve a hospital by ID."""
+  hospital(id: ID!): Hospital
+
+  """Search for urgent care centers by location."""
+  urgentCare(zipCode: String!, radius: Int): [UrgentCare!]!
+
+  """Retrieve telehealth options for a plan."""
+  telehealth(planId: ID!): Telehealth
+
+  """Retrieve virtual care options for a plan."""
+  virtualCare(planId: ID!): VirtualCare
+
+  """Retrieve a specific claim by claim ID."""
+  claim(claimId: ID!): Claim
+
+  """List claims for a member, optionally filtered by date range."""
+  claims(memberId: ID!, dateFrom: String, dateTo: String, claimType: String): [Claim!]!
+
+  """Retrieve a specific Explanation of Benefits record."""
+  explanationOfBenefits(memberId: ID!, eobId: ID): ExplanationOfBenefits
+
+  """List all EOBs for a member."""
+  memberEOBs(memberId: ID!, dateFrom: String, dateTo: String): [ExplanationOfBenefits!]!
+
+  """Retrieve a prior authorization by ID."""
+  priorAuthorization(authId: ID!): PriorAuthorization
+
+  """List prior authorizations for a member."""
+  priorAuthorizations(memberId: ID!, status: String): [PriorAuthorization!]!
+
+  """Retrieve authorization status by auth ID."""
+  authorizationStatus(authId: ID!): AuthorizationStatus
+
+  """Retrieve a drug from the Cigna formulary."""
+  formularyDrug(rxNorm: String, ndc: String, planId: ID!): FormularyDrug
+
+  """Search the formulary for a drug by name."""
+  formularySearch(name: String!, planId: ID!, tier: Int): [FormularyDrug!]!
+
+  """Retrieve pharmacy benefits for a plan."""
+  pharmacyBenefits(planId: ID!): PharmacyBenefits
+
+  """Retrieve a specific pharmacy by NCPDP ID."""
+  pharmacy(id: ID!): Pharmacy
+
+  """Search for pharmacies by location."""
+  pharmacies(zipCode: String!, radius: Int, pharmacyType: String): [Pharmacy!]!
+
+  """Retrieve a member's prescription fill history."""
+  prescriptionHistory(memberId: ID!, benefitPeriodYear: Int): PrescriptionHistory
+
+  """Retrieve a specific referral."""
+  referral(referralId: ID!): Referral
+
+  """List referrals for a member."""
+  referrals(memberId: ID!, status: String): [Referral!]!
+
+  """Look up an ICD-10 diagnosis code."""
+  icd10Code(code: String!): ICD10Code
+
+  """Look up a CPT procedure code."""
+  cptCode(code: String!): CPTCode
+
+  """Retrieve preventive care coverage for a plan."""
+  preventiveCare(planId: ID!): Preventive
+
+  """Retrieve wellness program details for a member."""
+  wellness(memberId: ID!): Wellness
+
+  """Retrieve EAP details for a member's plan."""
+  eap(planId: ID!): EAP
+
+  """Retrieve behavioral health benefits for a plan."""
+  behavioralHealth(planId: ID!): BehavioralHealth
+
+  """Retrieve dental benefits for a plan."""
+  dental(planId: ID!): Dental
+
+  """Retrieve vision benefits for a plan."""
+  vision(planId: ID!): Vision
+
+  """List registered webhooks for the authenticated application."""
+  webhooks: [Webhook!]!
+
+  """Retrieve a specific webhook."""
+  webhook(webhookId: ID!): Webhook
+}
+
+type Mutation {
+  """Submit a prior authorization request."""
+  submitAuthorizationRequest(input: AuthorizationRequestInput!): AuthorizationRequest
+
+  """Update a pending authorization request."""
+  updateAuthorizationRequest(authId: ID!, input: AuthorizationUpdateInput!): AuthorizationRequest
+
+  """Create a specialist referral."""
+  createReferral(input: ReferralInput!): Referral
+
+  """Register a new webhook endpoint."""
+  registerWebhook(input: WebhookInput!): Webhook
+
+  """Update an existing webhook."""
+  updateWebhook(webhookId: ID!, input: WebhookInput!): Webhook
+
+  """Delete a registered webhook."""
+  deleteWebhook(webhookId: ID!): Boolean
+}
+
+type Subscription {
+  """Subscribe to claim status updates for a member."""
+  claimStatusUpdated(memberId: ID!): ClaimStatus
+
+  """Subscribe to authorization status changes."""
+  authorizationStatusUpdated(authId: ID!): AuthorizationStatus
+
+  """Subscribe to new EOB availability for a member."""
+  eobAvailable(memberId: ID!): ExplanationOfBenefits
+
+  """Subscribe to new RxClaim events for a member."""
+  rxClaimPosted(memberId: ID!): RxClaim
+}
+
+# ─── Input Types ──────────────────────────────────────────────────────────────
+
+input AuthorizationRequestInput {
+  memberId: ID!
+  requestingProviderId: ID!
+  facilityProviderId: ID
+  serviceType: String!
+  procedureCodes: [String!]!
+  diagnosisCodes: [String!]!
+  requestedUnits: Int
+  urgentRequest: Boolean
+  clinicalNotes: String
+}
+
+input AuthorizationUpdateInput {
+  additionalDiagnosisCodes: [String]
+  additionalProcedureCodes: [String]
+  clinicalNotes: String
+  attachmentUrls: [String]
+}
+
+input ReferralInput {
+  memberId: ID!
+  referringProviderId: ID!
+  referredToProviderId: ID!
+  diagnosisCodes: [String!]!
+  serviceType: String!
+  requestedVisits: Int
+  notes: String
+}
+
+input WebhookInput {
+  url: String!
+  events: [String!]!
+  secret: String
+  active: Boolean
+}
