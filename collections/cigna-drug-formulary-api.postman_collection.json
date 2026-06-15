@@ -1,0 +1,251 @@
+{
+  "item": [
+    {
+      "id": "fc4319d6-3330-4045-b812-c80d0aad728b",
+      "name": "InsurancePlan",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0f1e9d5d-aa0e-4e4c-9951-51787199279e",
+          "name": "Retrieve the FHIR capability statement",
+          "request": {
+            "name": "Retrieve the FHIR capability statement",
+            "description": {},
+            "url": {
+              "path": [
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "54b48bd9-5186-40cd-9874-407e7f9e80d5",
+              "name": "FHIR CapabilityStatement",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d3d0d04-4af6-44ca-96b4-03345f13567e",
+          "name": "List drug formulary plans offered by Cigna",
+          "request": {
+            "name": "List drug formulary plans offered by Cigna",
+            "description": {},
+            "url": {
+              "path": [
+                "InsurancePlan"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dee563a4-052d-4725-bbee-684e95066c03",
+              "name": "FHIR Bundle of InsurancePlan formulary resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "InsurancePlan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ab8ad85a-cd83-4afe-b46a-ab5f9953a028",
+      "name": "MedicationKnowledge",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bc1986de-dce3-48a9-a8d0-3400abe8cfbb",
+          "name": "Search covered drugs and formulary tier, step therapy, and prior auth",
+          "request": {
+            "name": "Search covered drugs and formulary tier, step therapy, and prior auth",
+            "description": {},
+            "url": {
+              "path": [
+                "MedicationKnowledge"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "code",
+                  "value": "<string>",
+                  "description": "RxNorm or NDC code"
+                },
+                {
+                  "disabled": false,
+                  "key": "DrugPlan",
+                  "value": "<string>",
+                  "description": "InsurancePlan id of the formulary"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1ba7f10d-3490-4bf2-b379-f68626f62c6c",
+              "name": "FHIR Bundle of MedicationKnowledge resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "MedicationKnowledge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DrugPlan",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "fa30de13-39cc-4cf8-9eb6-b1d52748b41e",
+      "name": "Basic",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://fhir.cigna.com/DrugFormulary/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "48a8ce83-aff1-406e-9346-4b0478d0eceb",
+    "name": "Cigna Drug Formulary API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public FHIR-based Drug Formulary API exposing Cigna's covered drug lists, formulary tiers, prior authorization, step therapy, and quantity limits. Implements the HL7 Da Vinci PDex US Drug Formulary IG required by the CMS Interoperability and Patient Access rule.\n\nContact Support:\n Name: Cigna Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

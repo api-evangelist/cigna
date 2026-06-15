@@ -1,0 +1,315 @@
+{
+  "item": [
+    {
+      "id": "19b8d28d-09f5-4c96-a1e7-62ade9606f41",
+      "name": "Patient",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3e0152e2-ca39-4ff0-be66-c007f47fedbe",
+          "name": "Retrieve the FHIR capability statement",
+          "request": {
+            "name": "Retrieve the FHIR capability statement",
+            "description": {},
+            "url": {
+              "path": [
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5fb4b536-2fcd-4126-a7b2-a894f52340c3",
+              "name": "FHIR CapabilityStatement",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7cdf2b7b-ea61-491b-b65c-e8c839a9b07f",
+          "name": "Retrieve a complete clinical record for an attributed member",
+          "request": {
+            "name": "Retrieve a complete clinical record for an attributed member",
+            "description": {},
+            "url": {
+              "path": [
+                "Patient",
+                ":patientId",
+                "$everything"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patientId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e7dd1bd4-a0bc-479d-a3f2-0d6cd8d26b63",
+              "name": "FHIR Bundle for the patient",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Patient",
+                    ":patientId",
+                    "$everything"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patientId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "29e91bbb-27c1-4b99-b4fc-8b5bb463ac11",
+      "name": "Coverage",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "dcb11a34-7384-4abf-a3cb-bdd51d394e26",
+      "name": "ExplanationOfBenefit",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "ea02a0d6-2b2a-4055-89df-a95ce93a8f2a",
+      "name": "Bulk Data",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a90a0924-b473-42c8-985d-aa9e153a8438",
+          "name": "Initiate a bulk data export for a panel of attributed members",
+          "request": {
+            "name": "Initiate a bulk data export for a panel of attributed members",
+            "description": {},
+            "url": {
+              "path": [
+                "Group",
+                ":groupId",
+                "$export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a03cd62-c1d1-4ffb-b704-27a040b127d3",
+              "name": "Bulk export accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Group",
+                    ":groupId",
+                    "$export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://fhir.cigna.com/ProviderAccess/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "system/*.read"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://r-hi2.cigna.com/mga/sps/oauth/oauth20/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f2fb2694-0d97-4200-beb3-e8ec01774396",
+    "name": "Cigna Provider Access API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "FHIR API that allows in-network providers, with appropriate authorization, to retrieve a Cigna member's clinical and claims data to support care coordination. Implements the HL7 Da Vinci PDex Provider Access IG and the CMS Interoperability and Prior Authorization final rule (CMS-0057-F).\n\nContact Support:\n Name: Cigna Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

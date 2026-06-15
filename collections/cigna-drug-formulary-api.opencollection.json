@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cigna Drug Formulary API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "InsurancePlan",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve the FHIR capability statement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/DrugFormulary/v1/metadata"
+          },
+          "docs": "Retrieve the FHIR capability statement"
+        },
+        {
+          "info": {
+            "name": "List drug formulary plans offered by Cigna",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/DrugFormulary/v1/InsurancePlan",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List drug formulary plans offered by Cigna"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "MedicationKnowledge",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search covered drugs and formulary tier, step therapy, and prior auth",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/DrugFormulary/v1/MedicationKnowledge",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "query",
+                "description": "RxNorm or NDC code"
+              },
+              {
+                "name": "DrugPlan",
+                "value": "",
+                "type": "query",
+                "description": "InsurancePlan id of the formulary"
+              }
+            ]
+          },
+          "docs": "Search covered drugs and formulary tier, step therapy, and prior auth"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

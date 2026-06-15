@@ -1,0 +1,198 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cigna Patient Access API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://r-hi2.cigna.com/mga/sps/oauth/oauth20/authorize",
+      "accessTokenUrl": "https://r-hi2.cigna.com/mga/sps/oauth/oauth20/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Patient",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve the FHIR capability statement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/PatientAccess/v1/metadata"
+          },
+          "docs": "Retrieve the FHIR capability statement"
+        },
+        {
+          "info": {
+            "name": "Retrieve the authenticated member's identifier",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/PatientAccess/v1/$userinfo"
+          },
+          "docs": "Retrieve the authenticated member's identifier"
+        },
+        {
+          "info": {
+            "name": "Search the authenticated member's Patient resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/PatientAccess/v1/Patient",
+            "params": [
+              {
+                "name": "_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search the authenticated member's Patient resource"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Coverage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve coverage records for the authenticated member",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/PatientAccess/v1/Coverage",
+            "params": [
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve coverage records for the authenticated member"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ExplanationOfBenefit",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve EOB claims data for the authenticated member",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/PatientAccess/v1/ExplanationOfBenefit",
+            "params": [
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve EOB claims data for the authenticated member"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Encounter",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve encounter records for the authenticated member",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/PatientAccess/v1/Encounter"
+          },
+          "docs": "Retrieve encounter records for the authenticated member"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Observation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve clinical observations for the authenticated member",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/PatientAccess/v1/Observation"
+          },
+          "docs": "Retrieve clinical observations for the authenticated member"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Condition",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve condition records for the authenticated member",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/PatientAccess/v1/Condition"
+          },
+          "docs": "Retrieve condition records for the authenticated member"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "MedicationRequest",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve medication requests for the authenticated member",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/PatientAccess/v1/MedicationRequest"
+          },
+          "docs": "Retrieve medication requests for the authenticated member"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,159 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cigna Provider Directory API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Practitioner",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve the FHIR capability statement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/ProviderDirectory/v1/metadata"
+          },
+          "docs": "Retrieve the FHIR capability statement"
+        },
+        {
+          "info": {
+            "name": "Search practitioners in the Cigna network",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/ProviderDirectory/v1/Practitioner",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search practitioners in the Cigna network"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Organization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search organizations in the Cigna network",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/ProviderDirectory/v1/Organization"
+          },
+          "docs": "Search organizations in the Cigna network"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Location",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search locations of Cigna network providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/ProviderDirectory/v1/Location",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "address-postalcode",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search locations of Cigna network providers"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "HealthcareService",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search healthcare services offered by Cigna network providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/ProviderDirectory/v1/HealthcareService"
+          },
+          "docs": "Search healthcare services offered by Cigna network providers"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "PractitionerRole",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search practitioner roles within Cigna networks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/ProviderDirectory/v1/PractitionerRole"
+          },
+          "docs": "Search practitioner roles within Cigna networks"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "InsurancePlan",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Cigna insurance plans and the networks associated with each",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/ProviderDirectory/v1/InsurancePlan"
+          },
+          "docs": "List Cigna insurance plans and the networks associated with each"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

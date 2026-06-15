@@ -1,0 +1,522 @@
+{
+  "item": [
+    {
+      "id": "66b7e3d1-39b3-4532-bc06-e78e4ef7518f",
+      "name": "Practitioner",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "76d0f459-cded-4496-898d-988bdd5f86f0",
+          "name": "Retrieve the FHIR capability statement",
+          "request": {
+            "name": "Retrieve the FHIR capability statement",
+            "description": {},
+            "url": {
+              "path": [
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e4f40216-27ec-4a6c-8fe0-eed4d5774910",
+              "name": "FHIR CapabilityStatement",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "73996535-3484-4b90-a97d-576f50b21f2b",
+          "name": "Search practitioners in the Cigna network",
+          "request": {
+            "name": "Search practitioners in the Cigna network",
+            "description": {},
+            "url": {
+              "path": [
+                "Practitioner"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "identifier",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ca9fe4c4-3108-43fd-a73e-a555038140df",
+              "name": "FHIR Bundle of Practitioner resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Practitioner"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "6e512be6-dc69-4280-b1a7-cbd81c4c7b41",
+      "name": "Organization",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6c685fce-5b2c-4f48-b075-0afa3be301f9",
+          "name": "Search organizations in the Cigna network",
+          "request": {
+            "name": "Search organizations in the Cigna network",
+            "description": {},
+            "url": {
+              "path": [
+                "Organization"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "baf0ffe9-2ee2-40da-9500-ef5138cc69d4",
+              "name": "FHIR Bundle of Organization resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Organization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a0f51140-1fc9-454f-b630-4058c7f4b92b",
+      "name": "Location",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2de649c7-23da-4efb-bf13-68f0898a1345",
+          "name": "Search locations of Cigna network providers",
+          "request": {
+            "name": "Search locations of Cigna network providers",
+            "description": {},
+            "url": {
+              "path": [
+                "Location"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "address-postalcode",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "612a6b90-84ad-4cfa-8f5e-41e9980b79f4",
+              "name": "FHIR Bundle of Location resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "address-postalcode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "5b852b5c-8c54-44e8-8bd4-cee788f15eec",
+      "name": "HealthcareService",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f5d9cffe-9106-4d90-b92c-e949dcf6e657",
+          "name": "Search healthcare services offered by Cigna network providers",
+          "request": {
+            "name": "Search healthcare services offered by Cigna network providers",
+            "description": {},
+            "url": {
+              "path": [
+                "HealthcareService"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "429283d5-e895-4490-a9e6-d589e365378a",
+              "name": "FHIR Bundle of HealthcareService resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "HealthcareService"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "79ad060d-9003-49a2-90f0-1c326e852414",
+      "name": "PractitionerRole",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7f429084-2157-483d-a1c5-99dfc708c249",
+          "name": "Search practitioner roles within Cigna networks",
+          "request": {
+            "name": "Search practitioner roles within Cigna networks",
+            "description": {},
+            "url": {
+              "path": [
+                "PractitionerRole"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9186a7d8-274e-41c6-a5be-fa178d499f6d",
+              "name": "FHIR Bundle of PractitionerRole resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "PractitionerRole"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a2a5bf08-a9ac-40e2-bcc2-8f61a2bc3154",
+      "name": "Network",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "c7c96105-8bc8-482f-bd67-8902801ac65d",
+      "name": "InsurancePlan",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ac6f06b3-a1e2-4ae2-8b8b-ff3baac0809b",
+          "name": "List Cigna insurance plans and the networks associated with each",
+          "request": {
+            "name": "List Cigna insurance plans and the networks associated with each",
+            "description": {},
+            "url": {
+              "path": [
+                "InsurancePlan"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d8376c57-d206-4932-b078-c38a343577e8",
+              "name": "FHIR Bundle of InsurancePlan resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "InsurancePlan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://fhir.cigna.com/ProviderDirectory/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e22e1b9d-19ce-4b4f-b777-27c63ee26832",
+    "name": "Cigna Provider Directory API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public FHIR-based Provider Directory API listing Cigna's contracted practitioners, organizations, locations, healthcare services, networks, and insurance plans. Implements the HL7 Da Vinci PDex Plan Network IG and the CMS Provider Directory API requirements.\n\nContact Support:\n Name: Cigna Developer Support",
+      "type": "text/plain"
+    }
+  }
+}
