@@ -7,7 +7,7 @@ description: Cigna Healthcare is a leading global health services company offeri
   APIs that enable third-party applications, electronic health record systems, and
   partners to access member health data with consent and look up Cigna network providers
   and formulary information.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/cigna/refs/heads/main/apis.yml
 type: Index
 access: 3rd-Party
@@ -33,7 +33,7 @@ apis:
     a Cigna member's claims, encounters, clinical data, coverage, and pharmacy information
     after the member completes SMART on FHIR authorization. Conforms to the CMS Interoperability
     and Patient Access final rule and the HL7 Da Vinci PDex implementation guide.
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
   baseURL: https://fhir.cigna.com/PatientAccess/v1
   tags:
@@ -54,7 +54,7 @@ apis:
     network providers, organizations, locations, healthcare services, and practitioner
     roles. Conforms to the HL7 Da Vinci PDex Plan Network implementation guide and
     the CMS Provider Directory API requirements.
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide
   baseURL: https://fhir.cigna.com/ProviderDirectory/v1
   tags:
@@ -73,7 +73,7 @@ apis:
     lists, formulary tiers, prior authorization requirements, step therapy, and quantity
     limits. Implements the HL7 Da Vinci PDex US Drug Formulary implementation guide
     required by the CMS Interoperability and Patient Access rule.
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://developer.cigna.com/docs/service-apis
   baseURL: https://fhir.cigna.com/DrugFormulary/v1
   tags:
@@ -92,7 +92,7 @@ apis:
     to retrieve a Cigna member's clinical and claims data to support care coordination.
     Implements the HL7 Da Vinci PDex Provider Access implementation guide and conforms
     to the CMS Interoperability and Prior Authorization final rule.
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://developer.cigna.com/docs/service-apis
   baseURL: https://fhir.cigna.com/ProviderAccess/v1
   tags:
