@@ -129,7 +129,7 @@ common:
   url: json-schema/cigna-patient-schema.json
 - type: Spectral
   url: spectral/cigna-spectral.yml
-- type: LLMsTxt
+- type: LlmsText
   url: https://developer.cigna.com/llms.txt
 maintainers:
 - FN: Kin Lane
