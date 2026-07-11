@@ -1,0 +1,54 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/cigna-patient-access-api-openapi.yml, openapi/cigna-provider-access-api-openapi.yml
+schemes:
+- name: smartOnFhir
+  source: openapi/cigna-patient-access-api-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://r-hi2.cigna.com/mga/sps/oauth/oauth20/authorize
+    tokenUrl: https://r-hi2.cigna.com/mga/sps/oauth/oauth20/token
+  description: SMART on FHIR authorization with patient-context launch
+- name: bulkData
+  source: openapi/cigna-provider-access-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://r-hi2.cigna.com/mga/sps/oauth/oauth20/token
+  description: SMART Backend Services authorization for bulk FHIR export
+scopes:
+- scope: fhirUser
+  description: Receive the user resource identifier
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/cigna-patient-access-api-openapi.yml
+- scope: launch/patient
+  description: Launch in patient context
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/cigna-patient-access-api-openapi.yml
+- scope: offline_access
+  description: Receive a refresh token
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/cigna-patient-access-api-openapi.yml
+- scope: openid
+  description: Receive an OpenID Connect identity token
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/cigna-patient-access-api-openapi.yml
+- scope: patient/*.read
+  description: Read all patient-context FHIR resources
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/cigna-patient-access-api-openapi.yml
+- scope: system/*.read
+  description: System-level read access to FHIR resources
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/cigna-provider-access-api-openapi.yml

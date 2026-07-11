@@ -105,6 +105,8 @@ apis:
   - type: OpenAPI
     url: openapi/cigna-provider-access-api-openapi.yml
 common:
+- type: OAuthScopes
+  url: scopes/cigna-scopes.yml
 - type: GitHubOrganization
   url: https://github.com/Cigna
 - type: LinkedIn
@@ -131,6 +133,8 @@ common:
   url: spectral/cigna-spectral.yml
 - type: LlmsText
   url: https://developer.cigna.com/llms.txt
+- url: https://newsroom.cigna.com/
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
