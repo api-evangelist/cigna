@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://trust.cigna.com/
+url: https://trust.cigna.com/
+certifications:
+- SOC 2
+- HIPAA
+evidence:
+- source: https://trust.cigna.com/
+  keywords:
+  - soc 2
+  - hipaa
+  - trust center

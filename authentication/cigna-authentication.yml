@@ -1,0 +1,29 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/cigna-patient-access-api-openapi.yml, openapi/cigna-provider-access-api-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+  - clientCredentials
+schemes:
+- name: smartOnFhir
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://r-hi2.cigna.com/mga/sps/oauth/oauth20/authorize
+    tokenUrl: https://r-hi2.cigna.com/mga/sps/oauth/oauth20/token
+    scopes: 5
+  description: SMART on FHIR authorization with patient-context launch
+  sources:
+  - openapi/cigna-patient-access-api-openapi.yml
+- name: bulkData
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://r-hi2.cigna.com/mga/sps/oauth/oauth20/token
+    scopes: 1
+  description: SMART Backend Services authorization for bulk FHIR export
+  sources:
+  - openapi/cigna-provider-access-api-openapi.yml

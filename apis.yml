@@ -105,6 +105,14 @@ apis:
   - type: OpenAPI
     url: openapi/cigna-provider-access-api-openapi.yml
 common:
+- type: TrustCenter
+  url: security/cigna-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/cigna-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/cigna-domain-security.yml
+- type: Authentication
+  url: authentication/cigna-authentication.yml
 - type: OAuthScopes
   url: scopes/cigna-scopes.yml
 - type: GitHubOrganization
