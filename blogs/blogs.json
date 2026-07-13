@@ -1,0 +1,14 @@
+{
+  "repo": "cigna",
+  "feeds": [
+    {
+      "source": "https://newsroom.cigna.com/",
+      "feed_url": "https://newsroom.cigna.com/latest-press-releases?pagetemplate=rss",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    }
+  ],
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 21
+}
