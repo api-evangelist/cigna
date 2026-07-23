@@ -1,0 +1,26 @@
+openapi: 3.1.0
+info:
+  title: Cigna Drug Formulary Bulk Data Condition API
+  description: Public FHIR-based Drug Formulary API exposing Cigna's covered drug lists, formulary tiers, prior authorization, step therapy, and quantity limits. Implements the HL7 Da Vinci PDex US Drug Formulary IG required by the CMS Interoperability and Patient Access rule.
+  version: '1.0'
+  contact:
+    name: Cigna Developer Support
+    url: https://developer.cigna.com/support
+servers:
+- url: https://fhir.cigna.com/DrugFormulary/v1
+  description: Cigna Drug Formulary Production
+tags:
+- name: Condition
+paths:
+  /Condition:
+    get:
+      operationId: searchCondition
+      summary: Retrieve condition records for the authenticated member
+      tags:
+      - Condition
+      responses:
+        '200':
+          description: FHIR Bundle of Condition resources
+externalDocs:
+  description: Cigna Service APIs
+  url: https://developer.cigna.com/docs/service-apis
