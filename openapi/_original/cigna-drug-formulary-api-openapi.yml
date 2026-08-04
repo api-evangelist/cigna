@@ -1,0 +1,63 @@
+openapi: 3.1.0
+info:
+  title: Cigna Drug Formulary API
+  description: >-
+    Public FHIR-based Drug Formulary API exposing Cigna's covered drug lists,
+    formulary tiers, prior authorization, step therapy, and quantity limits.
+    Implements the HL7 Da Vinci PDex US Drug Formulary IG required by the
+    CMS Interoperability and Patient Access rule.
+  version: '1.0'
+  contact:
+    name: Cigna Developer Support
+    url: https://developer.cigna.com/support
+externalDocs:
+  description: Cigna Service APIs
+  url: https://developer.cigna.com/docs/service-apis
+servers:
+  - url: https://fhir.cigna.com/DrugFormulary/v1
+    description: Cigna Drug Formulary Production
+tags:
+  - name: InsurancePlan
+  - name: MedicationKnowledge
+  - name: Basic
+paths:
+  /metadata:
+    get:
+      operationId: getCapabilityStatement
+      summary: Retrieve the FHIR capability statement
+      tags: [InsurancePlan]
+      responses:
+        '200':
+          description: FHIR CapabilityStatement
+  /InsurancePlan:
+    get:
+      operationId: searchFormularyPlan
+      summary: List drug formulary plans offered by Cigna
+      tags: [InsurancePlan]
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: FHIR Bundle of InsurancePlan formulary resources
+  /MedicationKnowledge:
+    get:
+      operationId: searchMedicationKnowledge
+      summary: Search covered drugs and formulary tier, step therapy, and prior auth
+      tags: [MedicationKnowledge]
+      parameters:
+        - name: code
+          in: query
+          schema:
+            type: string
+          description: RxNorm or NDC code
+        - name: DrugPlan
+          in: query
+          schema:
+            type: string
+          description: InsurancePlan id of the formulary
+      responses:
+        '200':
+          description: FHIR Bundle of MedicationKnowledge resources

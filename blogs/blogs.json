@@ -2,6 +2,13 @@
   "repo": "cigna",
   "feeds": [
     {
+      "source": "https://newsroom.cigna.com/latest-press-releases?pagetemplate=rss",
+      "feed_url": "https://newsroom.cigna.com/latest-press-releases?pagetemplate=rss",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
       "source": "https://newsroom.cigna.com/",
       "feed_url": "https://newsroom.cigna.com/latest-press-releases?pagetemplate=rss",
       "title": "",
@@ -9,6 +16,6 @@
       "method": "discovered"
     }
   ],
-  "fetched": "2026-07-11T11:50:51Z",
-  "post_count": 21
+  "fetched": "2026-08-01T15:49:00Z",
+  "post_count": 27
 }

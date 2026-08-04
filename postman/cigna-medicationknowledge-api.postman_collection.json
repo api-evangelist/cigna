@@ -1,0 +1,105 @@
+{
+  "info": {
+    "_postman_id": "5425ae87-1234-4ca2-b7ba-125dadd9b212",
+    "name": "Cigna Drug Formulary Bulk Data MedicationKnowledge API",
+    "description": "Public FHIR-based Drug Formulary API exposing Cigna's covered drug lists, formulary tiers, prior authorization, step therapy, and quantity limits. Implements the HL7 Da Vinci PDex US Drug Formulary IG required by the CMS Interoperability and Patient Access rule.\n\nContact Support:\n Name: Cigna Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:06.000Z",
+    "updatedAt": "2026-07-28T01:21:06.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5425ae87-1234-4ca2-b7ba-125dadd9b212"
+  },
+  "item": [
+    {
+      "name": "MedicationKnowledge",
+      "item": [
+        {
+          "name": "Search covered drugs and formulary tier, step therapy, and prior auth",
+          "id": "80eb03ed-9772-4288-bcb6-620bd3df8ac0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/MedicationKnowledge?code=<string>&DrugPlan=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "MedicationKnowledge"
+              ],
+              "query": [
+                {
+                  "description": "RxNorm or NDC code",
+                  "key": "code",
+                  "value": "<string>"
+                },
+                {
+                  "description": "InsurancePlan id of the formulary",
+                  "key": "DrugPlan",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "87b9098f-1ff7-4f4c-a487-a10457e34112",
+              "name": "FHIR Bundle of MedicationKnowledge resources",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/MedicationKnowledge?code=<string>&DrugPlan=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "MedicationKnowledge"
+                  ],
+                  "query": [
+                    {
+                      "description": "RxNorm or NDC code",
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "InsurancePlan id of the formulary",
+                      "key": "DrugPlan",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:21:06.000Z",
+              "updatedAt": "2026-07-28T01:21:06.000Z",
+              "uid": "35240-87b9098f-1ff7-4f4c-a487-a10457e34112"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:06.000Z",
+          "updatedAt": "2026-07-28T01:21:06.000Z",
+          "uid": "35240-80eb03ed-9772-4288-bcb6-620bd3df8ac0"
+        }
+      ],
+      "id": "c427ba52-3136-4eb2-ab3e-ef0407d2529f",
+      "createdAt": "2026-07-28T01:21:06.000Z",
+      "updatedAt": "2026-07-28T01:21:06.000Z",
+      "uid": "35240-c427ba52-3136-4eb2-ab3e-ef0407d2529f"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://fhir.cigna.com/DrugFormulary/v1"
+    }
+  ]
+}

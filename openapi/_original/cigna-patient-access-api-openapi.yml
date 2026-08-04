@@ -1,0 +1,134 @@
+openapi: 3.1.0
+info:
+  title: Cigna Patient Access API
+  description: >-
+    FHIR R4 API exposing Cigna member health information including coverage,
+    claims, encounters, observations, conditions, medications, and immunizations
+    for authorized third-party applications acting on behalf of a member. Implements
+    the HL7 Da Vinci PDex implementation guide and the CMS Interoperability and
+    Patient Access final rule (CMS-9115-F).
+  version: '1.0'
+  contact:
+    name: Cigna Developer Support
+    url: https://developer.cigna.com/support
+externalDocs:
+  description: Patient Access Implementation Guide
+  url: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
+servers:
+  - url: https://fhir.cigna.com/PatientAccess/v1
+    description: Cigna Patient Access Production
+  - url: https://fhir.cigna.com/PatientAccess/v1-devportal
+    description: Developer Sandbox
+tags:
+  - name: Patient
+  - name: Coverage
+  - name: ExplanationOfBenefit
+  - name: Encounter
+  - name: Observation
+  - name: Condition
+  - name: MedicationRequest
+security:
+  - smartOnFhir: []
+paths:
+  /metadata:
+    get:
+      operationId: getCapabilityStatement
+      summary: Retrieve the FHIR capability statement
+      tags: [Patient]
+      responses:
+        '200':
+          description: FHIR CapabilityStatement
+  /$userinfo:
+    get:
+      operationId: getUserInfo
+      summary: Retrieve the authenticated member's identifier
+      tags: [Patient]
+      responses:
+        '200':
+          description: User info with member identifier
+  /Patient:
+    get:
+      operationId: searchPatient
+      summary: Search the authenticated member's Patient resource
+      tags: [Patient]
+      parameters:
+        - name: _id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: FHIR Bundle of Patient resources
+  /Coverage:
+    get:
+      operationId: searchCoverage
+      summary: Retrieve coverage records for the authenticated member
+      tags: [Coverage]
+      parameters:
+        - name: patient
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: FHIR Bundle of Coverage resources
+  /ExplanationOfBenefit:
+    get:
+      operationId: searchExplanationOfBenefit
+      summary: Retrieve EOB claims data for the authenticated member
+      tags: [ExplanationOfBenefit]
+      parameters:
+        - name: patient
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: FHIR Bundle of ExplanationOfBenefit resources
+  /Encounter:
+    get:
+      operationId: searchEncounter
+      summary: Retrieve encounter records for the authenticated member
+      tags: [Encounter]
+      responses:
+        '200':
+          description: FHIR Bundle of Encounter resources
+  /Observation:
+    get:
+      operationId: searchObservation
+      summary: Retrieve clinical observations for the authenticated member
+      tags: [Observation]
+      responses:
+        '200':
+          description: FHIR Bundle of Observation resources
+  /Condition:
+    get:
+      operationId: searchCondition
+      summary: Retrieve condition records for the authenticated member
+      tags: [Condition]
+      responses:
+        '200':
+          description: FHIR Bundle of Condition resources
+  /MedicationRequest:
+    get:
+      operationId: searchMedicationRequest
+      summary: Retrieve medication requests for the authenticated member
+      tags: [MedicationRequest]
+      responses:
+        '200':
+          description: FHIR Bundle of MedicationRequest resources
+components:
+  securitySchemes:
+    smartOnFhir:
+      type: oauth2
+      description: SMART on FHIR authorization with patient-context launch
+      flows:
+        authorizationCode:
+          authorizationUrl: https://r-hi2.cigna.com/mga/sps/oauth/oauth20/authorize
+          tokenUrl: https://r-hi2.cigna.com/mga/sps/oauth/oauth20/token
+          scopes:
+            'patient/*.read': Read all patient-context FHIR resources
+            'launch/patient': Launch in patient context
+            'offline_access': Receive a refresh token
+            'openid': Receive an OpenID Connect identity token
+            'fhirUser': Receive the user resource identifier

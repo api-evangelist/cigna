@@ -1,0 +1,93 @@
+{
+  "info": {
+    "_postman_id": "9c309e86-458b-4814-a81c-bcc777b4ca29",
+    "name": "Cigna Drug Formulary Bulk Data Coverage API",
+    "description": "Public FHIR-based Drug Formulary API exposing Cigna's covered drug lists, formulary tiers, prior authorization, step therapy, and quantity limits. Implements the HL7 Da Vinci PDex US Drug Formulary IG required by the CMS Interoperability and Patient Access rule.\n\nContact Support:\n Name: Cigna Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:00.000Z",
+    "updatedAt": "2026-07-28T01:21:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9c309e86-458b-4814-a81c-bcc777b4ca29"
+  },
+  "item": [
+    {
+      "name": "Coverage",
+      "item": [
+        {
+          "name": "Retrieve coverage records for the authenticated member",
+          "id": "af2192a5-5ada-42ef-b4ba-226721d42f60",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/Coverage?patient=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "Coverage"
+              ],
+              "query": [
+                {
+                  "key": "patient",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "22056691-7b7e-4e52-bc8f-d425df87b041",
+              "name": "FHIR Bundle of Coverage resources",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/Coverage?patient=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Coverage"
+                  ],
+                  "query": [
+                    {
+                      "key": "patient",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:21:01.000Z",
+              "updatedAt": "2026-07-28T01:21:01.000Z",
+              "uid": "35240-22056691-7b7e-4e52-bc8f-d425df87b041"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:01.000Z",
+          "updatedAt": "2026-07-28T01:21:01.000Z",
+          "uid": "35240-af2192a5-5ada-42ef-b4ba-226721d42f60"
+        }
+      ],
+      "id": "2196f997-b8d3-4a42-920a-dac23ebbd571",
+      "createdAt": "2026-07-28T01:21:01.000Z",
+      "updatedAt": "2026-07-28T01:21:01.000Z",
+      "uid": "35240-2196f997-b8d3-4a42-920a-dac23ebbd571"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://fhir.cigna.com/DrugFormulary/v1"
+    }
+  ]
+}

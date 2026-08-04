@@ -1,0 +1,42 @@
+{
+  "provider": "cigna",
+  "sources": [
+    "cigna-bulk-data-api-openapi.yml",
+    "cigna-condition-api-openapi.yml",
+    "cigna-coverage-api-openapi.yml",
+    "cigna-encounter-api-openapi.yml",
+    "cigna-explanationofbenefit-api-openapi.yml",
+    "cigna-healthcareservice-api-openapi.yml",
+    "cigna-insuranceplan-api-openapi.yml",
+    "cigna-location-api-openapi.yml",
+    "cigna-medicationknowledge-api-openapi.yml",
+    "cigna-medicationrequest-api-openapi.yml",
+    "cigna-observation-api-openapi.yml",
+    "cigna-organization-api-openapi.yml",
+    "cigna-patient-api-openapi.yml",
+    "cigna-practitioner-api-openapi.yml",
+    "cigna-practitionerrole-api-openapi.yml"
+  ],
+  "outputs": [
+    "cigna-bulk-data-api-openapi.yml",
+    "cigna-condition-api-openapi.yml",
+    "cigna-coverage-api-openapi.yml",
+    "cigna-encounter-api-openapi.yml",
+    "cigna-explanationofbenefit-api-openapi.yml",
+    "cigna-healthcareservice-api-openapi.yml",
+    "cigna-insuranceplan-api-openapi.yml",
+    "cigna-location-api-openapi.yml",
+    "cigna-medicationknowledge-api-openapi.yml",
+    "cigna-medicationrequest-api-openapi.yml",
+    "cigna-observation-api-openapi.yml",
+    "cigna-organization-api-openapi.yml",
+    "cigna-patient-api-openapi.yml",
+    "cigna-practitioner-api-openapi.yml",
+    "cigna-practitionerrole-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,116 @@
+{
+  "info": {
+    "_postman_id": "45c1b7e4-d8d3-4c87-87d3-65fb08cde9e0",
+    "name": "Cigna Drug Formulary Bulk Data API",
+    "description": "Public FHIR-based Drug Formulary API exposing Cigna's covered drug lists, formulary tiers, prior authorization, step therapy, and quantity limits. Implements the HL7 Da Vinci PDex US Drug Formulary IG required by the CMS Interoperability and Patient Access rule.\n\nContact Support:\n Name: Cigna Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:20:57.000Z",
+    "updatedAt": "2026-07-28T01:20:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-45c1b7e4-d8d3-4c87-87d3-65fb08cde9e0"
+  },
+  "item": [
+    {
+      "name": "Group",
+      "item": [
+        {
+          "name": "{groupId}",
+          "item": [
+            {
+              "name": "$export",
+              "item": [
+                {
+                  "name": "Initiate a bulk data export for a panel of attributed members",
+                  "id": "f70c15bf-0a4a-4088-82e9-50c022eb1df8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/Group/:groupId/$export",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Group",
+                        ":groupId",
+                        "$export"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e765708b-11d8-44b4-93db-aac931a6664a",
+                          "key": "groupId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "56c21410-d92d-44bc-bbbe-f1069d74c536",
+                      "name": "Bulk export accepted",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/Group/:groupId/$export",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "Group",
+                            ":groupId",
+                            "$export"
+                          ],
+                          "variable": [
+                            {
+                              "key": "groupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:20:57.000Z",
+                      "updatedAt": "2026-07-28T01:20:57.000Z",
+                      "uid": "35240-56c21410-d92d-44bc-bbbe-f1069d74c536"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:20:57.000Z",
+                  "updatedAt": "2026-07-28T01:20:57.000Z",
+                  "uid": "35240-f70c15bf-0a4a-4088-82e9-50c022eb1df8"
+                }
+              ],
+              "id": "271d1855-c30a-49e4-a0d4-0077e1ba7e75",
+              "createdAt": "2026-07-28T01:20:57.000Z",
+              "updatedAt": "2026-07-28T01:20:57.000Z",
+              "uid": "35240-271d1855-c30a-49e4-a0d4-0077e1ba7e75"
+            }
+          ],
+          "id": "c5de139f-681c-4028-b970-c87b6798de7d",
+          "createdAt": "2026-07-28T01:20:57.000Z",
+          "updatedAt": "2026-07-28T01:20:57.000Z",
+          "uid": "35240-c5de139f-681c-4028-b970-c87b6798de7d"
+        }
+      ],
+      "id": "f527645d-81fd-4693-a243-8ae7bcca001a",
+      "createdAt": "2026-07-28T01:20:57.000Z",
+      "updatedAt": "2026-07-28T01:20:57.000Z",
+      "uid": "35240-f527645d-81fd-4693-a243-8ae7bcca001a"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://fhir.cigna.com/DrugFormulary/v1"
+    }
+  ]
+}

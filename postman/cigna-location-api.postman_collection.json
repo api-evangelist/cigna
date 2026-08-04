@@ -1,0 +1,101 @@
+{
+  "info": {
+    "_postman_id": "1334ad37-5292-4c0f-a579-a9065ffd88db",
+    "name": "Cigna Drug Formulary Bulk Data Location API",
+    "description": "Public FHIR-based Drug Formulary API exposing Cigna's covered drug lists, formulary tiers, prior authorization, step therapy, and quantity limits. Implements the HL7 Da Vinci PDex US Drug Formulary IG required by the CMS Interoperability and Patient Access rule.\n\nContact Support:\n Name: Cigna Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:05.000Z",
+    "updatedAt": "2026-07-28T01:21:05.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1334ad37-5292-4c0f-a579-a9065ffd88db"
+  },
+  "item": [
+    {
+      "name": "Location",
+      "item": [
+        {
+          "name": "Search locations of Cigna network providers",
+          "id": "d2cf5d6d-3473-4f33-b082-1615e8587a5c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/Location?address=<string>&address-postalcode=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "Location"
+              ],
+              "query": [
+                {
+                  "key": "address",
+                  "value": "<string>"
+                },
+                {
+                  "key": "address-postalcode",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "826fb78f-0c20-4037-a3c4-786d2bde742f",
+              "name": "FHIR Bundle of Location resources",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/Location?address=<string>&address-postalcode=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Location"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "address-postalcode",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:21:06.000Z",
+              "updatedAt": "2026-07-28T01:21:06.000Z",
+              "uid": "35240-826fb78f-0c20-4037-a3c4-786d2bde742f"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:06.000Z",
+          "updatedAt": "2026-07-28T01:21:06.000Z",
+          "uid": "35240-d2cf5d6d-3473-4f33-b082-1615e8587a5c"
+        }
+      ],
+      "id": "a424b8c5-8b3e-493a-940a-1a9262a5a460",
+      "createdAt": "2026-07-28T01:21:06.000Z",
+      "updatedAt": "2026-07-28T01:21:06.000Z",
+      "uid": "35240-a424b8c5-8b3e-493a-940a-1a9262a5a460"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://fhir.cigna.com/DrugFormulary/v1"
+    }
+  ]
+}

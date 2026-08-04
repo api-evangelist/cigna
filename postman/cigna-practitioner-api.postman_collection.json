@@ -1,0 +1,162 @@
+{
+  "info": {
+    "_postman_id": "9d0dcd53-3f06-4191-bbd3-669464029a05",
+    "name": "Cigna Drug Formulary Bulk Data Practitioner API",
+    "description": "Public FHIR-based Drug Formulary API exposing Cigna's covered drug lists, formulary tiers, prior authorization, step therapy, and quantity limits. Implements the HL7 Da Vinci PDex US Drug Formulary IG required by the CMS Interoperability and Patient Access rule.\n\nContact Support:\n Name: Cigna Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:16.000Z",
+    "updatedAt": "2026-07-28T01:21:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9d0dcd53-3f06-4191-bbd3-669464029a05"
+  },
+  "item": [
+    {
+      "name": "metadata",
+      "item": [
+        {
+          "name": "Retrieve the FHIR capability statement",
+          "id": "8e039f56-0cb5-4cd2-8623-dbd72acfb64a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/metadata",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "metadata"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d04b926b-f5af-4b51-a2fc-f2a41ef9fe9e",
+              "name": "FHIR CapabilityStatement",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/metadata",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "metadata"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:21:16.000Z",
+              "updatedAt": "2026-07-28T01:21:16.000Z",
+              "uid": "35240-d04b926b-f5af-4b51-a2fc-f2a41ef9fe9e"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:16.000Z",
+          "updatedAt": "2026-07-28T01:21:16.000Z",
+          "uid": "35240-8e039f56-0cb5-4cd2-8623-dbd72acfb64a"
+        }
+      ],
+      "id": "feccc805-4ef5-4622-ade8-a8b701397cb5",
+      "createdAt": "2026-07-28T01:21:16.000Z",
+      "updatedAt": "2026-07-28T01:21:16.000Z",
+      "uid": "35240-feccc805-4ef5-4622-ade8-a8b701397cb5"
+    },
+    {
+      "name": "Practitioner",
+      "item": [
+        {
+          "name": "Search practitioners in the Cigna network",
+          "id": "86b93604-ecb3-43ba-89c7-188a6a377e99",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/Practitioner?name=<string>&identifier=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "Practitioner"
+              ],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "key": "identifier",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fc7cb30c-042f-48d1-97db-bd9c176d7a2a",
+              "name": "FHIR Bundle of Practitioner resources",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/Practitioner?name=<string>&identifier=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Practitioner"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:21:16.000Z",
+              "updatedAt": "2026-07-28T01:21:16.000Z",
+              "uid": "35240-fc7cb30c-042f-48d1-97db-bd9c176d7a2a"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:16.000Z",
+          "updatedAt": "2026-07-28T01:21:16.000Z",
+          "uid": "35240-86b93604-ecb3-43ba-89c7-188a6a377e99"
+        }
+      ],
+      "id": "f0e9deed-e524-40dc-8d22-00e2020038b7",
+      "createdAt": "2026-07-28T01:21:16.000Z",
+      "updatedAt": "2026-07-28T01:21:16.000Z",
+      "uid": "35240-f0e9deed-e524-40dc-8d22-00e2020038b7"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://fhir.cigna.com/DrugFormulary/v1"
+    }
+  ]
+}

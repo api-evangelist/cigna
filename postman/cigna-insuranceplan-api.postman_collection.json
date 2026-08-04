@@ -1,0 +1,154 @@
+{
+  "info": {
+    "_postman_id": "bbbcb48d-7ad9-4a96-ac8f-0fce1c898ed7",
+    "name": "Cigna Drug Formulary Bulk Data InsurancePlan API",
+    "description": "Public FHIR-based Drug Formulary API exposing Cigna's covered drug lists, formulary tiers, prior authorization, step therapy, and quantity limits. Implements the HL7 Da Vinci PDex US Drug Formulary IG required by the CMS Interoperability and Patient Access rule.\n\nContact Support:\n Name: Cigna Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:04.000Z",
+    "updatedAt": "2026-07-28T01:21:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bbbcb48d-7ad9-4a96-ac8f-0fce1c898ed7"
+  },
+  "item": [
+    {
+      "name": "metadata",
+      "item": [
+        {
+          "name": "Retrieve the FHIR capability statement",
+          "id": "296562da-a6f2-4638-8f1f-b23bed26b078",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/metadata",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "metadata"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a04a14d4-4103-4399-b031-dfbcd65c54a6",
+              "name": "FHIR CapabilityStatement",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/metadata",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "metadata"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:21:05.000Z",
+              "updatedAt": "2026-07-28T01:21:05.000Z",
+              "uid": "35240-a04a14d4-4103-4399-b031-dfbcd65c54a6"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:05.000Z",
+          "updatedAt": "2026-07-28T01:21:05.000Z",
+          "uid": "35240-296562da-a6f2-4638-8f1f-b23bed26b078"
+        }
+      ],
+      "id": "09a2f4b2-280e-4003-9b60-c65201d24d8b",
+      "createdAt": "2026-07-28T01:21:05.000Z",
+      "updatedAt": "2026-07-28T01:21:05.000Z",
+      "uid": "35240-09a2f4b2-280e-4003-9b60-c65201d24d8b"
+    },
+    {
+      "name": "InsurancePlan",
+      "item": [
+        {
+          "name": "List drug formulary plans offered by Cigna",
+          "id": "37b4df91-686f-4a62-be52-1b1e2170d79b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/InsurancePlan?status=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "InsurancePlan"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "98bb1b33-5ffd-4de5-b1a4-e3dd9b75dc99",
+              "name": "FHIR Bundle of InsurancePlan formulary resources",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/InsurancePlan?status=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "InsurancePlan"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:21:05.000Z",
+              "updatedAt": "2026-07-28T01:21:05.000Z",
+              "uid": "35240-98bb1b33-5ffd-4de5-b1a4-e3dd9b75dc99"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:05.000Z",
+          "updatedAt": "2026-07-28T01:21:05.000Z",
+          "uid": "35240-37b4df91-686f-4a62-be52-1b1e2170d79b"
+        }
+      ],
+      "id": "a5ebf9b8-78df-43d1-94d2-542bd4cf58e4",
+      "createdAt": "2026-07-28T01:21:05.000Z",
+      "updatedAt": "2026-07-28T01:21:05.000Z",
+      "uid": "35240-a5ebf9b8-78df-43d1-94d2-542bd4cf58e4"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://fhir.cigna.com/DrugFormulary/v1"
+    }
+  ]
+}

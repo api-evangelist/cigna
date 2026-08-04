@@ -1,0 +1,72 @@
+openapi: 3.1.0
+info:
+  title: Cigna Provider Access API
+  description: >-
+    FHIR API that allows in-network providers, with appropriate authorization,
+    to retrieve a Cigna member's clinical and claims data to support care
+    coordination. Implements the HL7 Da Vinci PDex Provider Access IG and the
+    CMS Interoperability and Prior Authorization final rule (CMS-0057-F).
+  version: '1.0'
+  contact:
+    name: Cigna Developer Support
+    url: https://developer.cigna.com/support
+externalDocs:
+  description: Cigna Service APIs
+  url: https://developer.cigna.com/docs/service-apis
+servers:
+  - url: https://fhir.cigna.com/ProviderAccess/v1
+    description: Cigna Provider Access Production
+tags:
+  - name: Patient
+  - name: Coverage
+  - name: ExplanationOfBenefit
+  - name: Bulk Data
+security:
+  - bulkData: []
+paths:
+  /metadata:
+    get:
+      operationId: getCapabilityStatement
+      summary: Retrieve the FHIR capability statement
+      tags: [Patient]
+      responses:
+        '200':
+          description: FHIR CapabilityStatement
+  /Group/{groupId}/$export:
+    get:
+      operationId: bulkExportGroup
+      summary: Initiate a bulk data export for a panel of attributed members
+      tags: [Bulk Data]
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '202':
+          description: Bulk export accepted
+  /Patient/{patientId}/$everything:
+    get:
+      operationId: getPatientEverything
+      summary: Retrieve a complete clinical record for an attributed member
+      tags: [Patient]
+      parameters:
+        - name: patientId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: FHIR Bundle for the patient
+components:
+  securitySchemes:
+    bulkData:
+      type: oauth2
+      description: SMART Backend Services authorization for bulk FHIR export
+      flows:
+        clientCredentials:
+          tokenUrl: https://r-hi2.cigna.com/mga/sps/oauth/oauth20/token
+          scopes:
+            'system/*.read': System-level read access to FHIR resources

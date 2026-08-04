@@ -1,0 +1,302 @@
+{
+  "info": {
+    "_postman_id": "01ed133e-2dc8-4269-86e0-d9f3d734fb4b",
+    "name": "Cigna Drug Formulary Bulk Data Patient API",
+    "description": "Public FHIR-based Drug Formulary API exposing Cigna's covered drug lists, formulary tiers, prior authorization, step therapy, and quantity limits. Implements the HL7 Da Vinci PDex US Drug Formulary IG required by the CMS Interoperability and Patient Access rule.\n\nContact Support:\n Name: Cigna Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:14.000Z",
+    "updatedAt": "2026-07-28T01:21:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-01ed133e-2dc8-4269-86e0-d9f3d734fb4b"
+  },
+  "item": [
+    {
+      "name": "metadata",
+      "item": [
+        {
+          "name": "Retrieve the FHIR capability statement",
+          "id": "d0998b87-8041-4b9f-a8b8-81ae1fa6fe81",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/metadata",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "metadata"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a303f37d-40cf-421c-8537-50d0706c4906",
+              "name": "FHIR CapabilityStatement",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/metadata",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "metadata"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:21:15.000Z",
+              "updatedAt": "2026-07-28T01:21:15.000Z",
+              "uid": "35240-a303f37d-40cf-421c-8537-50d0706c4906"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:15.000Z",
+          "updatedAt": "2026-07-28T01:21:15.000Z",
+          "uid": "35240-d0998b87-8041-4b9f-a8b8-81ae1fa6fe81"
+        }
+      ],
+      "id": "7f62a449-6cd4-4524-91ec-53c4859e8afe",
+      "createdAt": "2026-07-28T01:21:15.000Z",
+      "updatedAt": "2026-07-28T01:21:15.000Z",
+      "uid": "35240-7f62a449-6cd4-4524-91ec-53c4859e8afe"
+    },
+    {
+      "name": "$userinfo",
+      "item": [
+        {
+          "name": "Retrieve the authenticated member's identifier",
+          "id": "a34e2a4e-d51b-4ae5-a1c2-c6cd3dd0babd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/$userinfo",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "$userinfo"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7576a7e8-abea-4501-a7af-48e8b596f9a4",
+              "name": "User info with member identifier",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/$userinfo",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "$userinfo"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:21:15.000Z",
+              "updatedAt": "2026-07-28T01:21:15.000Z",
+              "uid": "35240-7576a7e8-abea-4501-a7af-48e8b596f9a4"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:15.000Z",
+          "updatedAt": "2026-07-28T01:21:15.000Z",
+          "uid": "35240-a34e2a4e-d51b-4ae5-a1c2-c6cd3dd0babd"
+        }
+      ],
+      "id": "0efb13ce-df13-428a-9aed-0dfbdd7f7bac",
+      "createdAt": "2026-07-28T01:21:15.000Z",
+      "updatedAt": "2026-07-28T01:21:15.000Z",
+      "uid": "35240-0efb13ce-df13-428a-9aed-0dfbdd7f7bac"
+    },
+    {
+      "name": "Patient",
+      "item": [
+        {
+          "name": "{patientId}",
+          "item": [
+            {
+              "name": "$everything",
+              "item": [
+                {
+                  "name": "Retrieve a complete clinical record for an attributed member",
+                  "id": "a7fed9f8-e688-43d7-8cbe-0804369d1a6b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/Patient/:patientId/$everything",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Patient",
+                        ":patientId",
+                        "$everything"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7939b118-ed45-4506-970c-73da3cf51bc4",
+                          "key": "patientId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "f3bc8115-bfad-4196-9c3e-2dfb07393280",
+                      "name": "FHIR Bundle for the patient",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/Patient/:patientId/$everything",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "Patient",
+                            ":patientId",
+                            "$everything"
+                          ],
+                          "variable": [
+                            {
+                              "key": "patientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:21:15.000Z",
+                      "updatedAt": "2026-07-28T01:21:15.000Z",
+                      "uid": "35240-f3bc8115-bfad-4196-9c3e-2dfb07393280"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:15.000Z",
+                  "updatedAt": "2026-07-28T01:21:15.000Z",
+                  "uid": "35240-a7fed9f8-e688-43d7-8cbe-0804369d1a6b"
+                }
+              ],
+              "id": "2ac08834-adde-4b17-b251-d93bdb7e2e21",
+              "createdAt": "2026-07-28T01:21:15.000Z",
+              "updatedAt": "2026-07-28T01:21:15.000Z",
+              "uid": "35240-2ac08834-adde-4b17-b251-d93bdb7e2e21"
+            }
+          ],
+          "id": "0426de45-f79b-44c7-aa61-d3a124181c3d",
+          "createdAt": "2026-07-28T01:21:15.000Z",
+          "updatedAt": "2026-07-28T01:21:15.000Z",
+          "uid": "35240-0426de45-f79b-44c7-aa61-d3a124181c3d"
+        },
+        {
+          "name": "Search the authenticated member's Patient resource",
+          "id": "9c4907cc-0529-41b7-96ef-48be246d1d3b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/Patient?_id=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "Patient"
+              ],
+              "query": [
+                {
+                  "key": "_id",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "369ff659-b56f-4916-a619-e11f85bc8020",
+              "name": "FHIR Bundle of Patient resources",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/Patient?_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Patient"
+                  ],
+                  "query": [
+                    {
+                      "key": "_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:21:15.000Z",
+              "updatedAt": "2026-07-28T01:21:15.000Z",
+              "uid": "35240-369ff659-b56f-4916-a619-e11f85bc8020"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:15.000Z",
+          "updatedAt": "2026-07-28T01:21:15.000Z",
+          "uid": "35240-9c4907cc-0529-41b7-96ef-48be246d1d3b"
+        }
+      ],
+      "id": "621e66e9-6081-475b-a34e-97b55b58272a",
+      "createdAt": "2026-07-28T01:21:15.000Z",
+      "updatedAt": "2026-07-28T01:21:15.000Z",
+      "uid": "35240-621e66e9-6081-475b-a34e-97b55b58272a"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://fhir.cigna.com/DrugFormulary/v1"
+    }
+  ]
+}
