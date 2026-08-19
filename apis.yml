@@ -38,7 +38,7 @@ tags:
 - Fortune 100
 created: '2025-02-21'
 modified: '2026-05-19'
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 apis:
 - aid: cigna:cigna-bulk-data-api
   name: Cigna Bulk Data API
