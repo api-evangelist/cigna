@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cigna Drug Formulary Bulk Data Location API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Location",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search locations of Cigna network providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/DrugFormulary/v1/Location",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "address-postalcode",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search locations of Cigna network providers"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

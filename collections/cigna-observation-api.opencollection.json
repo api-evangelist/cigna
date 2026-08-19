@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cigna Drug Formulary Bulk Data Observation API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Observation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve clinical observations for the authenticated member",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/DrugFormulary/v1/Observation"
+          },
+          "docs": "Retrieve clinical observations for the authenticated member"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

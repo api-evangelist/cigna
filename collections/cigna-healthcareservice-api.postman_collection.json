@@ -1,0 +1,87 @@
+{
+  "item": [
+    {
+      "id": "1cebef9e-eaa2-4585-8a2f-ca5b2fd85d4d",
+      "name": "HealthcareService",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "160dd49f-f210-41a8-a82a-434717457c5b",
+          "name": "Search healthcare services offered by Cigna network providers",
+          "request": {
+            "name": "Search healthcare services offered by Cigna network providers",
+            "description": {},
+            "url": {
+              "path": [
+                "HealthcareService"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d34f8893-fe5b-4d55-a44f-78d7c780902b",
+              "name": "FHIR Bundle of HealthcareService resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "HealthcareService"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://fhir.cigna.com/DrugFormulary/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "bfe698c3-f7fd-4d97-85d1-7143e81e27e1",
+    "name": "Cigna Drug Formulary Bulk Data HealthcareService API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public FHIR-based Drug Formulary API exposing Cigna's covered drug lists, formulary tiers, prior authorization, step therapy, and quantity limits. Implements the HL7 Da Vinci PDex US Drug Formulary IG required by the CMS Interoperability and Patient Access rule.\n\nContact Support:\n Name: Cigna Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

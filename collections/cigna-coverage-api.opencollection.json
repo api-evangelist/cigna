@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cigna Drug Formulary Bulk Data Coverage API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Coverage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve coverage records for the authenticated member",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/DrugFormulary/v1/Coverage",
+            "params": [
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve coverage records for the authenticated member"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,87 @@
+{
+  "item": [
+    {
+      "id": "d8b62e82-2f95-4b73-b14d-4f395724501a",
+      "name": "PractitionerRole",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c2fc58cd-19df-4f69-b5ae-59054b1855e8",
+          "name": "Search practitioner roles within Cigna networks",
+          "request": {
+            "name": "Search practitioner roles within Cigna networks",
+            "description": {},
+            "url": {
+              "path": [
+                "PractitionerRole"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9f3801e3-cc79-4794-a338-2a0c26de3038",
+              "name": "FHIR Bundle of PractitionerRole resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "PractitionerRole"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://fhir.cigna.com/DrugFormulary/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ef6ecf5f-340a-46c8-b46e-25c794b2b199",
+    "name": "Cigna Drug Formulary Bulk Data PractitionerRole API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public FHIR-based Drug Formulary API exposing Cigna's covered drug lists, formulary tiers, prior authorization, step therapy, and quantity limits. Implements the HL7 Da Vinci PDex US Drug Formulary IG required by the CMS Interoperability and Patient Access rule.\n\nContact Support:\n Name: Cigna Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "item": [
+    {
+      "id": "c0e5c4bc-b7da-41b6-b759-daa94edd6804",
+      "name": "MedicationKnowledge",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f3cf8834-d497-4b61-9b5a-626dfbb2597f",
+          "name": "Search covered drugs and formulary tier, step therapy, and prior auth",
+          "request": {
+            "name": "Search covered drugs and formulary tier, step therapy, and prior auth",
+            "description": {},
+            "url": {
+              "path": [
+                "MedicationKnowledge"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "code",
+                  "value": "<string>",
+                  "description": "RxNorm or NDC code"
+                },
+                {
+                  "disabled": false,
+                  "key": "DrugPlan",
+                  "value": "<string>",
+                  "description": "InsurancePlan id of the formulary"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9bbba203-8509-40fc-9cfb-c2cfdee30fbe",
+              "name": "FHIR Bundle of MedicationKnowledge resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "MedicationKnowledge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DrugPlan",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://fhir.cigna.com/DrugFormulary/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "486ef569-5703-41a6-a21b-6ef2af0ab499",
+    "name": "Cigna Drug Formulary Bulk Data MedicationKnowledge API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public FHIR-based Drug Formulary API exposing Cigna's covered drug lists, formulary tiers, prior authorization, step therapy, and quantity limits. Implements the HL7 Da Vinci PDex US Drug Formulary IG required by the CMS Interoperability and Patient Access rule.\n\nContact Support:\n Name: Cigna Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

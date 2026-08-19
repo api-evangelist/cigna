@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cigna Drug Formulary Bulk Data ExplanationOfBenefit API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ExplanationOfBenefit",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve EOB claims data for the authenticated member",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/DrugFormulary/v1/ExplanationOfBenefit",
+            "params": [
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve EOB claims data for the authenticated member"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

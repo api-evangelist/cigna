@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cigna Drug Formulary Bulk Data MedicationRequest API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "MedicationRequest",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve medication requests for the authenticated member",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/DrugFormulary/v1/MedicationRequest"
+          },
+          "docs": "Retrieve medication requests for the authenticated member"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cigna Drug Formulary Bulk Data Practitioner API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Practitioner",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve the FHIR capability statement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/DrugFormulary/v1/metadata"
+          },
+          "docs": "Retrieve the FHIR capability statement"
+        },
+        {
+          "info": {
+            "name": "Search practitioners in the Cigna network",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/DrugFormulary/v1/Practitioner",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search practitioners in the Cigna network"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

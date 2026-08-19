@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cigna Drug Formulary Bulk Data Patient API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Patient",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve the FHIR capability statement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/DrugFormulary/v1/metadata"
+          },
+          "docs": "Retrieve the FHIR capability statement"
+        },
+        {
+          "info": {
+            "name": "Retrieve the authenticated member's identifier",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/DrugFormulary/v1/$userinfo"
+          },
+          "docs": "Retrieve the authenticated member's identifier"
+        },
+        {
+          "info": {
+            "name": "Search the authenticated member's Patient resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/DrugFormulary/v1/Patient",
+            "params": [
+              {
+                "name": "_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search the authenticated member's Patient resource"
+        },
+        {
+          "info": {
+            "name": "Retrieve a complete clinical record for an attributed member",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://fhir.cigna.com/DrugFormulary/v1/Patient/:patientId/$everything",
+            "params": [
+              {
+                "name": "patientId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a complete clinical record for an attributed member"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
