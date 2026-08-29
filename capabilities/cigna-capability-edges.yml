@@ -1,0 +1,26 @@
+slug: cigna
+provider: Cigna
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Healthcare Providers
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Patient
+  spec_file: cigna-patient-api-openapi.yml
+  capability_id: BC-2900.60
+  capability_id_l1: BC-2900
+  capability_name: Healthcare Interoperability Operations
+  confidence: 0.78
+  evidence: GET /Patient/{patientId}/$everything  getPatientEverything  Retrieve a complete clinical record
+    for an attributed member
+  reason: Capability statement, $userinfo, Patient search and $everything are the standard CMS Patient
+    Access FHIR surface — operation of FHIR endpoints and patient-initiated data sharing rather than any
+    care-delivery capability.

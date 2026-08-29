@@ -323,6 +323,9 @@ apis:
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis
 common:
+- type: CapabilityMap
+  url: capabilities/cigna-capability-edges.yml
+  name: Cigna Business Capability Map
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/cigna/overview
 - type: AgenticAccess
