@@ -36,7 +36,7 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/cigna.png
 url: https://raw.githubusercontent.com/api-evangelist/cigna/refs/heads/main/apis.yml
 type: Index
 access: 3rd-Party
-position: Consumer
+position: Consuming
 tags:
 - CMS Interoperability
 - Da Vinci
