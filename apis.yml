@@ -142,42 +142,6 @@ apis:
     url: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis
-- aid: cigna:cigna-healthcareservice-api
-  name: Cigna HealthcareService API
-  description: The HealthcareService API from Cigna — 1 operation(s) for healthcareservice.
-  humanURL: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
-  baseURL: https://fhir.cigna.com/PatientAccess/v1
-  tags:
-  - HealthcareService
-  properties:
-  - type: OpenAPI
-    url: openapi/cigna-healthcareservice-api-openapi.yml
-  - type: Documentation
-    url: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
-  - type: GraphQL
-    url: graphql/cigna-graphql.md
-  - type: Documentation
-    url: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide
-  - type: Documentation
-    url: https://developer.cigna.com/docs/service-apis
-- aid: cigna:cigna-insuranceplan-api
-  name: Cigna InsurancePlan API
-  description: The InsurancePlan API from Cigna — 2 operation(s) for insuranceplan.
-  humanURL: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
-  baseURL: https://fhir.cigna.com/PatientAccess/v1
-  tags:
-  - InsurancePlan
-  properties:
-  - type: OpenAPI
-    url: openapi/cigna-insuranceplan-api-openapi.yml
-  - type: Documentation
-    url: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
-  - type: GraphQL
-    url: graphql/cigna-graphql.md
-  - type: Documentation
-    url: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide
-  - type: Documentation
-    url: https://developer.cigna.com/docs/service-apis
 - aid: cigna:cigna-location-api
   name: Cigna Location API
   description: The Location API from Cigna — 1 operation(s) for location.
@@ -206,24 +170,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/cigna-medicationknowledge-api-openapi.yml
-  - type: Documentation
-    url: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
-  - type: GraphQL
-    url: graphql/cigna-graphql.md
-  - type: Documentation
-    url: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide
-  - type: Documentation
-    url: https://developer.cigna.com/docs/service-apis
-- aid: cigna:cigna-medicationrequest-api
-  name: Cigna MedicationRequest API
-  description: The MedicationRequest API from Cigna — 1 operation(s) for medicationrequest.
-  humanURL: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
-  baseURL: https://fhir.cigna.com/PatientAccess/v1
-  tags:
-  - MedicationRequest
-  properties:
-  - type: OpenAPI
-    url: openapi/cigna-medicationrequest-api-openapi.yml
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
   - type: GraphQL
@@ -304,16 +250,70 @@ apis:
     url: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis
-- aid: cigna:cigna-practitionerrole-api
-  name: Cigna PractitionerRole API
-  description: The PractitionerRole API from Cigna — 1 operation(s) for practitionerrole.
+- aid: cigna:cigna-healthcare-service-api
+  name: Cigna Healthcare Service API
+  description: The Healthcare Service API from Cigna — 1 operation(s) for healthcare service.
   humanURL: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
   baseURL: https://fhir.cigna.com/PatientAccess/v1
   tags:
-  - PractitionerRole
+  - Healthcare Service
   properties:
   - type: OpenAPI
-    url: openapi/cigna-practitionerrole-api-openapi.yml
+    url: openapi/cigna-healthcare-service-api-openapi.yml
+  - type: Documentation
+    url: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
+  - type: GraphQL
+    url: graphql/cigna-graphql.md
+  - type: Documentation
+    url: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide
+  - type: Documentation
+    url: https://developer.cigna.com/docs/service-apis
+- aid: cigna:cigna-insurance-plan-api
+  name: Cigna Insurance Plan API
+  description: The Insurance Plan API from Cigna — 2 operation(s) for insurance plan.
+  humanURL: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
+  baseURL: https://fhir.cigna.com/PatientAccess/v1
+  tags:
+  - Insurance Plan
+  properties:
+  - type: OpenAPI
+    url: openapi/cigna-insurance-plan-api-openapi.yml
+  - type: Documentation
+    url: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
+  - type: GraphQL
+    url: graphql/cigna-graphql.md
+  - type: Documentation
+    url: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide
+  - type: Documentation
+    url: https://developer.cigna.com/docs/service-apis
+- aid: cigna:cigna-medication-request-api
+  name: Cigna Medication Request API
+  description: The Medication Request API from Cigna — 1 operation(s) for medication request.
+  humanURL: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
+  baseURL: https://fhir.cigna.com/PatientAccess/v1
+  tags:
+  - Medication Request
+  properties:
+  - type: OpenAPI
+    url: openapi/cigna-medication-request-api-openapi.yml
+  - type: Documentation
+    url: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
+  - type: GraphQL
+    url: graphql/cigna-graphql.md
+  - type: Documentation
+    url: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide
+  - type: Documentation
+    url: https://developer.cigna.com/docs/service-apis
+- aid: cigna:cigna-practitioner-role-api
+  name: Cigna Practitioner Role API
+  description: The Practitioner Role API from Cigna — 1 operation(s) for practitioner role.
+  humanURL: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
+  baseURL: https://fhir.cigna.com/PatientAccess/v1
+  tags:
+  - Practitioner Role
+  properties:
+  - type: OpenAPI
+    url: openapi/cigna-practitioner-role-api-openapi.yml
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
   - type: GraphQL
