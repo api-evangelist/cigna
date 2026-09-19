@@ -220,6 +220,8 @@ apis:
   humanURL: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
   baseURL: https://fhir.cigna.com/PatientAccess/v1
   tags:
+  - Patients
+  tags_raw:
   - Patient
   properties:
   - type: OpenAPI
@@ -256,6 +258,8 @@ apis:
   humanURL: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
   baseURL: https://fhir.cigna.com/PatientAccess/v1
   tags:
+  - HealthcareService
+  tags_raw:
   - Healthcare Service
   properties:
   - type: OpenAPI
@@ -274,6 +278,8 @@ apis:
   humanURL: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
   baseURL: https://fhir.cigna.com/PatientAccess/v1
   tags:
+  - InsurancePlan
+  tags_raw:
   - Insurance Plan
   properties:
   - type: OpenAPI
@@ -292,6 +298,8 @@ apis:
   humanURL: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
   baseURL: https://fhir.cigna.com/PatientAccess/v1
   tags:
+  - MedicationRequest
+  tags_raw:
   - Medication Request
   properties:
   - type: OpenAPI
@@ -310,6 +318,8 @@ apis:
   humanURL: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
   baseURL: https://fhir.cigna.com/PatientAccess/v1
   tags:
+  - PractitionerRole
+  tags_raw:
   - Practitioner Role
   properties:
   - type: OpenAPI
