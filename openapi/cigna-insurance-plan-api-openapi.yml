@@ -1,0 +1,48 @@
+openapi: 3.2.0
+info:
+  title: Cigna Insurance Plan API
+  version: '1.0'
+  contact:
+    name: Cigna Developer Support
+    url: https://developer.cigna.com/support
+  description: 'Operations tagged InsurancePlan across 2 of this provider''s published API definitions: cigna-drug-formulary-api-openapi.yml, cigna-provider-directory-api-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://fhir.cigna.com/DrugFormulary/v1
+  description: Cigna Drug Formulary Production
+- url: https://fhir.cigna.com/ProviderDirectory/v1
+  description: Cigna Provider Directory Production
+tags:
+- name: Insurance Plan
+paths:
+  /metadata:
+    get:
+      operationId: getCapabilityStatement
+      summary: Retrieve the FHIR capability statement
+      tags:
+      - Insurance Plan
+      responses:
+        '200':
+          description: FHIR CapabilityStatement
+    servers:
+    - url: https://fhir.cigna.com/DrugFormulary/v1
+      description: Cigna Drug Formulary Production
+  /InsurancePlan:
+    get:
+      operationId: searchFormularyPlan
+      summary: List drug formulary plans offered by Cigna
+      tags:
+      - Insurance Plan
+      parameters:
+      - name: status
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: FHIR Bundle of InsurancePlan formulary resources
+    servers:
+    - url: https://fhir.cigna.com/DrugFormulary/v1
+      description: Cigna Drug Formulary Production
+x-refined-from:
+- cigna-drug-formulary-api-openapi.yml
+- cigna-provider-directory-api-openapi.yml

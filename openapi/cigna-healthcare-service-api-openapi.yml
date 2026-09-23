@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Cigna Provider Directory Practitioner API
+  title: Cigna Provider Directory Healthcare Service API
   description: Public FHIR-based Provider Directory API listing Cigna's contracted practitioners, organizations, locations, healthcare services, networks, and insurance plans. Implements the HL7 Da Vinci PDex Plan Network IG and the CMS Provider Directory API requirements.
   version: '1.0'
   contact:
@@ -10,35 +10,17 @@ servers:
 - url: https://fhir.cigna.com/ProviderDirectory/v1
   description: Cigna Provider Directory Production
 tags:
-- name: Practitioner
+- name: Healthcare Service
 paths:
-  /metadata:
+  /HealthcareService:
     get:
-      operationId: getCapabilityStatement
-      summary: Retrieve the FHIR capability statement
+      operationId: searchHealthcareService
+      summary: Search healthcare services offered by Cigna network providers
       tags:
-      - Practitioner
+      - Healthcare Service
       responses:
         '200':
-          description: FHIR CapabilityStatement
-  /Practitioner:
-    get:
-      operationId: searchPractitioner
-      summary: Search practitioners in the Cigna network
-      tags:
-      - Practitioner
-      parameters:
-      - name: name
-        in: query
-        schema:
-          type: string
-      - name: identifier
-        in: query
-        schema:
-          type: string
-      responses:
-        '200':
-          description: FHIR Bundle of Practitioner resources
+          description: FHIR Bundle of HealthcareService resources
 externalDocs:
   description: Provider Directory Implementation Guide
   url: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide

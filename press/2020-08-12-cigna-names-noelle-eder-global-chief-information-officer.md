@@ -1,7 +1,9 @@
 ---
 title: Cigna Names Noelle Eder, Global Chief Information Officer
 url: https://www.cigna.com/newsroom/news-releases/2020/cigna-names-noelle-eder-global-chief-information-officer.html
-date: '2020-08-12'
+published: ''
+date_basis: harvested
+harvested: '2020-08-12'
 author: ''
 feed_url: http://www.cigna.com/newsroom/rss.xml
 ---

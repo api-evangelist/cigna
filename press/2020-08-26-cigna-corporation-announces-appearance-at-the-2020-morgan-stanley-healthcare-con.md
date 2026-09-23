@@ -2,7 +2,9 @@
 title: Cigna Corporation Announces Appearance at the 2020 Morgan Stanley Healthcare
   Conference
 url: https://www.cigna.com/newsroom/news-releases/2020/cigna-corporation-announces-appearance-at-the-2020-morgan-stanley-healthcare-conference.html
-date: '2020-08-26'
+published: ''
+date_basis: harvested
+harvested: '2020-08-26'
 author: ''
 feed_url: http://www.cigna.com/newsroom/rss.xml
 ---

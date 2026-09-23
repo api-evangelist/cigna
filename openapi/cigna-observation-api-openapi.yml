@@ -1,14 +1,18 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Cigna Drug Formulary Bulk Data Observation API
-  description: Public FHIR-based Drug Formulary API exposing Cigna's covered drug lists, formulary tiers, prior authorization, step therapy, and quantity limits. Implements the HL7 Da Vinci PDex US Drug Formulary IG required by the CMS Interoperability and Patient Access rule.
+  title: Cigna Patient Access Observation API
+  description: FHIR R4 API exposing Cigna member health information including coverage, claims, encounters, observations, conditions, medications, and immunizations for authorized third-party applications acting on behalf of a member. Implements the HL7 Da Vinci PDex implementation guide and the CMS Interoperability and Patient Access final rule (CMS-9115-F).
   version: '1.0'
   contact:
     name: Cigna Developer Support
     url: https://developer.cigna.com/support
 servers:
-- url: https://fhir.cigna.com/DrugFormulary/v1
-  description: Cigna Drug Formulary Production
+- url: https://fhir.cigna.com/PatientAccess/v1
+  description: Cigna Patient Access Production
+- url: https://fhir.cigna.com/PatientAccess/v1-devportal
+  description: Developer Sandbox
+security:
+- smartOnFhir: []
 tags:
 - name: Observation
 paths:
@@ -21,6 +25,21 @@ paths:
       responses:
         '200':
           description: FHIR Bundle of Observation resources
+components:
+  securitySchemes:
+    smartOnFhir:
+      type: oauth2
+      description: SMART on FHIR authorization with patient-context launch
+      flows:
+        authorizationCode:
+          authorizationUrl: https://r-hi2.cigna.com/mga/sps/oauth/oauth20/authorize
+          tokenUrl: https://r-hi2.cigna.com/mga/sps/oauth/oauth20/token
+          scopes:
+            patient/*.read: Read all patient-context FHIR resources
+            launch/patient: Launch in patient context
+            offline_access: Receive a refresh token
+            openid: Receive an OpenID Connect identity token
+            fhirUser: Receive the user resource identifier
 externalDocs:
-  description: Cigna Service APIs
-  url: https://developer.cigna.com/docs/service-apis
+  description: Patient Access Implementation Guide
+  url: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide

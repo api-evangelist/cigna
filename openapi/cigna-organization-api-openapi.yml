@@ -1,14 +1,14 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Cigna Drug Formulary Bulk Data Organization API
-  description: Public FHIR-based Drug Formulary API exposing Cigna's covered drug lists, formulary tiers, prior authorization, step therapy, and quantity limits. Implements the HL7 Da Vinci PDex US Drug Formulary IG required by the CMS Interoperability and Patient Access rule.
+  title: Cigna Provider Directory Organization API
+  description: Public FHIR-based Provider Directory API listing Cigna's contracted practitioners, organizations, locations, healthcare services, networks, and insurance plans. Implements the HL7 Da Vinci PDex Plan Network IG and the CMS Provider Directory API requirements.
   version: '1.0'
   contact:
     name: Cigna Developer Support
     url: https://developer.cigna.com/support
 servers:
-- url: https://fhir.cigna.com/DrugFormulary/v1
-  description: Cigna Drug Formulary Production
+- url: https://fhir.cigna.com/ProviderDirectory/v1
+  description: Cigna Provider Directory Production
 tags:
 - name: Organization
 paths:
@@ -22,5 +22,5 @@ paths:
         '200':
           description: FHIR Bundle of Organization resources
 externalDocs:
-  description: Cigna Service APIs
-  url: https://developer.cigna.com/docs/service-apis
+  description: Provider Directory Implementation Guide
+  url: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide

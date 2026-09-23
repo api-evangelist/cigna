@@ -1,14 +1,18 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Cigna Drug Formulary Bulk Data Patient API
-  description: Public FHIR-based Drug Formulary API exposing Cigna's covered drug lists, formulary tiers, prior authorization, step therapy, and quantity limits. Implements the HL7 Da Vinci PDex US Drug Formulary IG required by the CMS Interoperability and Patient Access rule.
+  title: Cigna Patient API
   version: '1.0'
   contact:
     name: Cigna Developer Support
     url: https://developer.cigna.com/support
+  description: 'Operations tagged Patient across 2 of this provider''s published API definitions: cigna-patient-access-api-openapi.yml, cigna-provider-access-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://fhir.cigna.com/DrugFormulary/v1
-  description: Cigna Drug Formulary Production
+- url: https://fhir.cigna.com/PatientAccess/v1
+  description: Cigna Patient Access Production
+- url: https://fhir.cigna.com/PatientAccess/v1-devportal
+  description: Developer Sandbox
+- url: https://fhir.cigna.com/ProviderAccess/v1
+  description: Cigna Provider Access Production
 tags:
 - name: Patient
 paths:
@@ -21,6 +25,13 @@ paths:
       responses:
         '200':
           description: FHIR CapabilityStatement
+      security:
+      - smartOnFhir: []
+    servers:
+    - url: https://fhir.cigna.com/PatientAccess/v1
+      description: Cigna Patient Access Production
+    - url: https://fhir.cigna.com/PatientAccess/v1-devportal
+      description: Developer Sandbox
   /$userinfo:
     get:
       operationId: getUserInfo
@@ -30,6 +41,13 @@ paths:
       responses:
         '200':
           description: User info with member identifier
+      security:
+      - smartOnFhir: []
+    servers:
+    - url: https://fhir.cigna.com/PatientAccess/v1
+      description: Cigna Patient Access Production
+    - url: https://fhir.cigna.com/PatientAccess/v1-devportal
+      description: Developer Sandbox
   /Patient:
     get:
       operationId: searchPatient
@@ -44,6 +62,13 @@ paths:
       responses:
         '200':
           description: FHIR Bundle of Patient resources
+      security:
+      - smartOnFhir: []
+    servers:
+    - url: https://fhir.cigna.com/PatientAccess/v1
+      description: Cigna Patient Access Production
+    - url: https://fhir.cigna.com/PatientAccess/v1-devportal
+      description: Developer Sandbox
   /Patient/{patientId}/$everything:
     get:
       operationId: getPatientEverything
@@ -59,6 +84,34 @@ paths:
       responses:
         '200':
           description: FHIR Bundle for the patient
-externalDocs:
-  description: Cigna Service APIs
-  url: https://developer.cigna.com/docs/service-apis
+      security:
+      - bulkData: []
+    servers:
+    - url: https://fhir.cigna.com/ProviderAccess/v1
+      description: Cigna Provider Access Production
+components:
+  securitySchemes:
+    smartOnFhir:
+      type: oauth2
+      description: SMART on FHIR authorization with patient-context launch
+      flows:
+        authorizationCode:
+          authorizationUrl: https://r-hi2.cigna.com/mga/sps/oauth/oauth20/authorize
+          tokenUrl: https://r-hi2.cigna.com/mga/sps/oauth/oauth20/token
+          scopes:
+            patient/*.read: Read all patient-context FHIR resources
+            launch/patient: Launch in patient context
+            offline_access: Receive a refresh token
+            openid: Receive an OpenID Connect identity token
+            fhirUser: Receive the user resource identifier
+    bulkData:
+      type: oauth2
+      description: SMART Backend Services authorization for bulk FHIR export
+      flows:
+        clientCredentials:
+          tokenUrl: https://r-hi2.cigna.com/mga/sps/oauth/oauth20/token
+          scopes:
+            system/*.read: System-level read access to FHIR resources
+x-refined-from:
+- cigna-patient-access-api-openapi.yml
+- cigna-provider-access-api-openapi.yml

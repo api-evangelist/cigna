@@ -2,7 +2,9 @@
 title: Cigna Launches Evernorth To Accelerate Delivery Of Innovative And Flexible
   Health Service Solutions
 url: https://www.cigna.com/newsroom/news-releases/2020/cigna-launches-evernorth-to-accelerate-delivery-of-innovative-and-flexible-health-service-solutions.html
-date: '2020-09-16'
+published: ''
+date_basis: harvested
+harvested: '2020-09-16'
 author: ''
 feed_url: http://www.cigna.com/newsroom/rss.xml
 ---

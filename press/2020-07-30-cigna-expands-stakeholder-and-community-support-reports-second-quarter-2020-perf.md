@@ -2,7 +2,9 @@
 title: Cigna Expands Stakeholder and Community Support, Reports Second Quarter 2020
   Performance
 url: https://www.cigna.com/newsroom/news-releases/2020/cigna-expands-stakeholder-and-community-support-reports-second-quarter-2020-performance.html
-date: '2020-07-30'
+published: ''
+date_basis: harvested
+harvested: '2020-07-30'
 author: ''
 feed_url: http://www.cigna.com/newsroom/rss.xml
 ---

@@ -2,7 +2,9 @@
 title: Cigna Corporation Announces Appearance at the Credit Suisse 29th Annual Healthcare
   Conference
 url: https://www.cigna.com/newsroom/news-releases/2020/cigna-corporation-announces-appearance-at-the-credit-suisse-29th-annual-healthcare-conference.html
-date: '2020-10-19'
+published: ''
+date_basis: harvested
+harvested: '2020-10-19'
 author: ''
 feed_url: http://www.cigna.com/newsroom/rss.xml
 ---

@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Cigna Patient Access Explanation Of Benefit API
+  title: Cigna Patient Access Medication Request API
   description: FHIR R4 API exposing Cigna member health information including coverage, claims, encounters, observations, conditions, medications, and immunizations for authorized third-party applications acting on behalf of a member. Implements the HL7 Da Vinci PDex implementation guide and the CMS Interoperability and Patient Access final rule (CMS-9115-F).
   version: '1.0'
   contact:
@@ -14,22 +14,17 @@ servers:
 security:
 - smartOnFhir: []
 tags:
-- name: ExplanationOfBenefit
+- name: Medication Request
 paths:
-  /ExplanationOfBenefit:
+  /MedicationRequest:
     get:
-      operationId: searchExplanationOfBenefit
-      summary: Retrieve EOB claims data for the authenticated member
+      operationId: searchMedicationRequest
+      summary: Retrieve medication requests for the authenticated member
       tags:
-      - ExplanationOfBenefit
-      parameters:
-      - name: patient
-        in: query
-        schema:
-          type: string
+      - Medication Request
       responses:
         '200':
-          description: FHIR Bundle of ExplanationOfBenefit resources
+          description: FHIR Bundle of MedicationRequest resources
 components:
   securitySchemes:
     smartOnFhir:

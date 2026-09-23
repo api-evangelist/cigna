@@ -1,7 +1,9 @@
 ---
 title: Cigna Reports Third Quarter 2020 Performance, Raises Revenue Guidance
 url: https://www.cigna.com/newsroom/news-releases/2020/cigna-reports-third-quarter-2020-performance-raises-revenue-guidance.html
-date: '2020-11-05'
+published: ''
+date_basis: harvested
+harvested: '2020-11-05'
 author: ''
 feed_url: http://www.cigna.com/newsroom/rss.xml
 ---

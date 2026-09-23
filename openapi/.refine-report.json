@@ -1,42 +1,59 @@
 {
   "provider": "cigna",
   "sources": [
-    "cigna-bulk-data-api-openapi.yml",
-    "cigna-condition-api-openapi.yml",
-    "cigna-coverage-api-openapi.yml",
-    "cigna-encounter-api-openapi.yml",
-    "cigna-explanationofbenefit-api-openapi.yml",
-    "cigna-healthcareservice-api-openapi.yml",
-    "cigna-insuranceplan-api-openapi.yml",
-    "cigna-location-api-openapi.yml",
-    "cigna-medicationknowledge-api-openapi.yml",
-    "cigna-medicationrequest-api-openapi.yml",
-    "cigna-observation-api-openapi.yml",
-    "cigna-organization-api-openapi.yml",
-    "cigna-patient-api-openapi.yml",
-    "cigna-practitioner-api-openapi.yml",
-    "cigna-practitionerrole-api-openapi.yml"
+    "_original/cigna-drug-formulary-api-openapi.yml",
+    "_original/cigna-patient-access-api-openapi.yml",
+    "_original/cigna-provider-access-api-openapi.yml",
+    "_original/cigna-provider-directory-api-openapi.yml"
   ],
   "outputs": [
-    "cigna-bulk-data-api-openapi.yml",
+    "cigna-insuranceplan-api-openapi.yml",
+    "cigna-medicationknowledge-api-openapi.yml",
     "cigna-condition-api-openapi.yml",
     "cigna-coverage-api-openapi.yml",
     "cigna-encounter-api-openapi.yml",
     "cigna-explanationofbenefit-api-openapi.yml",
-    "cigna-healthcareservice-api-openapi.yml",
-    "cigna-insuranceplan-api-openapi.yml",
-    "cigna-location-api-openapi.yml",
-    "cigna-medicationknowledge-api-openapi.yml",
     "cigna-medicationrequest-api-openapi.yml",
     "cigna-observation-api-openapi.yml",
-    "cigna-organization-api-openapi.yml",
     "cigna-patient-api-openapi.yml",
+    "cigna-bulk-data-api-openapi.yml",
+    "cigna-healthcareservice-api-openapi.yml",
+    "cigna-location-api-openapi.yml",
+    "cigna-organization-api-openapi.yml",
     "cigna-practitioner-api-openapi.yml",
     "cigna-practitionerrole-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 4 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (4 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "cigna-drug-formulary-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "cigna-patient-access-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "cigna-provider-access-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "cigna-provider-directory-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "tag 'InsurancePlan' spans 2 source specs (cigna-drug-formulary-api-openapi.yml, cigna-provider-directory-api-openapi.yml): per-path servers applied",
+    "tag 'Patient' spans 2 source specs (cigna-patient-access-api-openapi.yml, cigna-provider-access-api-openapi.yml): per-path servers applied",
+    "superseded outputs removed: cigna-healthcare-service-api-openapi.yml, cigna-insurance-plan-api-openapi.yml, cigna-medication-request-api-openapi.yml, cigna-practitioner-role-api-openapi.yml",
+    "apis.yml register: written (+4 apis, 15 total)"
+  ],
+  "skipped": [
+    "cigna-bulk-data-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cigna-condition-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cigna-coverage-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cigna-encounter-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cigna-explanationofbenefit-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cigna-healthcare-service-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cigna-insurance-plan-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cigna-location-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cigna-medication-request-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cigna-medicationknowledge-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cigna-observation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cigna-organization-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cigna-patient-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cigna-practitioner-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cigna-practitioner-role-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -2,7 +2,9 @@
 title: Cigna Expands Medicare Advantage Offerings to Deliver Greater Affordability,
   Predictability and Choice to Customers
 url: https://www.cigna.com/newsroom/news-releases/2020/cigna-expands-medicare-advantage-offerings-to-deliver-greater-affordability-predictability-and-choice-to-customers.html
-date: '2020-10-01'
+published: ''
+date_basis: harvested
+harvested: '2020-10-01'
 author: ''
 feed_url: http://www.cigna.com/newsroom/rss.xml
 ---

@@ -1,7 +1,9 @@
 ---
 title: The Cigna Group's approach to ethical AI practices
 url: https://newsroom.thecignagroup.com/the-cigna-group-approach-to-ethical-ai-practices
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Cigna" press release artificial intelligence'
 position: 3
 source: serpapi-google

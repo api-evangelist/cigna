@@ -1,7 +1,9 @@
 ---
 title: Cigna and Memorial Hermann Reach Agreement to Keep Quality Care Affordable
 url: https://www.cigna.com/newsroom/news-releases/2020/cigna-and-memorial-hermann-reach-agreement-to-keep-quality-care-affordable.html
-date: '2020-07-20'
+published: ''
+date_basis: harvested
+harvested: '2020-07-20'
 author: ''
 feed_url: http://www.cigna.com/newsroom/rss.xml
 ---

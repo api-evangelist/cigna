@@ -1,7 +1,9 @@
 ---
 title: Cigna Uses Data and AI to Improve Patient Outcomes
 url: https://newsroom.cigna.com/how-cigna-uses-data-and-ai-to-improve-patient-outcomes
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Cigna" press release artificial intelligence'
 position: 5
 source: serpapi-google

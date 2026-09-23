@@ -1,7 +1,9 @@
 ---
 title: Cigna launches new generative AI assistant for members
 url: https://www.healthcaredive.com/news/cigna-launches-generative-ai-member-assistant/750480/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Cigna" press release artificial intelligence'
 position: 4
 source: serpapi-google
