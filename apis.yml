@@ -64,8 +64,6 @@ apis:
     url: openapi/cigna-bulk-data-api-openapi.yml
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
-  - type: GraphQL
-    url: graphql/cigna-graphql.md
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide
   - type: Documentation
@@ -82,8 +80,6 @@ apis:
     url: openapi/cigna-condition-api-openapi.yml
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
-  - type: GraphQL
-    url: graphql/cigna-graphql.md
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide
   - type: Documentation
@@ -100,8 +96,6 @@ apis:
     url: openapi/cigna-coverage-api-openapi.yml
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
-  - type: GraphQL
-    url: graphql/cigna-graphql.md
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide
   - type: Documentation
@@ -118,8 +112,6 @@ apis:
     url: openapi/cigna-encounter-api-openapi.yml
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
-  - type: GraphQL
-    url: graphql/cigna-graphql.md
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide
   - type: Documentation
@@ -136,8 +128,6 @@ apis:
     url: openapi/cigna-explanationofbenefit-api-openapi.yml
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
-  - type: GraphQL
-    url: graphql/cigna-graphql.md
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide
   - type: Documentation
@@ -154,8 +144,6 @@ apis:
     url: openapi/cigna-location-api-openapi.yml
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
-  - type: GraphQL
-    url: graphql/cigna-graphql.md
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide
   - type: Documentation
@@ -172,8 +160,6 @@ apis:
     url: openapi/cigna-medicationknowledge-api-openapi.yml
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
-  - type: GraphQL
-    url: graphql/cigna-graphql.md
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide
   - type: Documentation
@@ -190,8 +176,6 @@ apis:
     url: openapi/cigna-observation-api-openapi.yml
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
-  - type: GraphQL
-    url: graphql/cigna-graphql.md
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide
   - type: Documentation
@@ -208,8 +192,6 @@ apis:
     url: openapi/cigna-organization-api-openapi.yml
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
-  - type: GraphQL
-    url: graphql/cigna-graphql.md
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide
   - type: Documentation
@@ -228,8 +210,6 @@ apis:
     url: openapi/cigna-patient-api-openapi.yml
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
-  - type: GraphQL
-    url: graphql/cigna-graphql.md
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide
   - type: Documentation
@@ -246,8 +226,6 @@ apis:
     url: openapi/cigna-practitioner-api-openapi.yml
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
-  - type: GraphQL
-    url: graphql/cigna-graphql.md
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide
   - type: Documentation
@@ -266,8 +244,6 @@ apis:
     url: openapi/cigna-healthcare-service-api-openapi.yml
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
-  - type: GraphQL
-    url: graphql/cigna-graphql.md
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide
   - type: Documentation
@@ -286,8 +262,6 @@ apis:
     url: openapi/cigna-insurance-plan-api-openapi.yml
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
-  - type: GraphQL
-    url: graphql/cigna-graphql.md
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide
   - type: Documentation
@@ -306,8 +280,6 @@ apis:
     url: openapi/cigna-medication-request-api-openapi.yml
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
-  - type: GraphQL
-    url: graphql/cigna-graphql.md
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide
   - type: Documentation
@@ -326,8 +298,6 @@ apis:
     url: openapi/cigna-practitioner-role-api-openapi.yml
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide
-  - type: GraphQL
-    url: graphql/cigna-graphql.md
   - type: Documentation
     url: https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide
   - type: Documentation
