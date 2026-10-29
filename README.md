@@ -1,4 +1,4 @@
-# Cigna (cigna)
+# Cigna
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,133 +66,189 @@
 
 Cigna Healthcare is a leading global health services company offering medical, dental, behavioral, and pharmacy plans for individuals, families, and employers. The Cigna Developer Portal exposes CMS-mandated FHIR APIs for Patient Access, Provider Directory, Drug Formulary, and Provider Access, along with member and provider service APIs that enable third-party applications, electronic health record systems, and partners to access member health data with consent and look up Cigna network providers and formulary information.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/cigna/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/cigna/refs/heads/main/apis.yml)
+**Areas:** CMS Interoperability · Da Vinci · Drug Formulary · FHIR · Health Insurance · Healthcare · Patient Access · Provider Directory · SMART on FHIR · Fortune 100
 
-## Scope
+## Cigna on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Cigna is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/cigna/](https://apis.io/providers/cigna/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (15)
 
-- CMS Interoperability
-- Da Vinci
-- Drug Formulary
-- FHIR
-- Health Insurance
-- Healthcare
-- Patient Access
-- Provider Directory
-- SMART on FHIR
+- [Cigna Bulk Data API](https://apis.io/apis/cigna/cigna-bulk-data-api/) — The Bulk Data API from Cigna — 1 operation(s) for bulk data.
+- [Cigna Condition API](https://apis.io/apis/cigna/cigna-condition-api/) — The Condition API from Cigna — 1 operation(s) for condition.
+- [Cigna Coverage API](https://apis.io/apis/cigna/cigna-coverage-api/) — The Coverage API from Cigna — 1 operation(s) for coverage.
+- [Cigna Encounter API](https://apis.io/apis/cigna/cigna-encounter-api/) — The Encounter API from Cigna — 1 operation(s) for encounter.
+- [Cigna ExplanationOfBenefit API](https://apis.io/apis/cigna/cigna-explanationofbenefit-api/) — The ExplanationOfBenefit API from Cigna — 1 operation(s) for explanationofbenefit.
+- [Cigna Location API](https://apis.io/apis/cigna/cigna-location-api/) — The Location API from Cigna — 1 operation(s) for location.
+- [Cigna MedicationKnowledge API](https://apis.io/apis/cigna/cigna-medicationknowledge-api/) — The MedicationKnowledge API from Cigna — 1 operation(s) for medicationknowledge.
+- [Cigna Observation API](https://apis.io/apis/cigna/cigna-observation-api/) — The Observation API from Cigna — 1 operation(s) for observation.
+- [Cigna Organization API](https://apis.io/apis/cigna/cigna-organization-api/) — The Organization API from Cigna — 1 operation(s) for organization.
+- [Cigna Patient API](https://apis.io/apis/cigna/cigna-patient-api/) — The Patient API from Cigna — 4 operation(s) for patient.
+- [Cigna Practitioner API](https://apis.io/apis/cigna/cigna-practitioner-api/) — The Practitioner API from Cigna — 2 operation(s) for practitioner.
+- [Cigna Healthcare Service API](https://apis.io/apis/cigna/cigna-healthcare-service-api/) — The Healthcare Service API from Cigna — 1 operation(s) for healthcare service.
+- [Cigna Insurance Plan API](https://apis.io/apis/cigna/cigna-insurance-plan-api/) — The Insurance Plan API from Cigna — 2 operation(s) for insurance plan.
+- [Cigna Medication Request API](https://apis.io/apis/cigna/cigna-medication-request-api/) — The Medication Request API from Cigna — 1 operation(s) for medication request.
+- [Cigna Practitioner Role API](https://apis.io/apis/cigna/cigna-practitioner-role-api/) — The Practitioner Role API from Cigna — 1 operation(s) for practitioner role.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-02-21
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### GraphQL (1)
 
-### Cigna Patient Access API
+GraphQL schemas.
 
-FHIR R4 API that allows authorized third-party applications to access a Cigna member's claims, encounters, clinical data, coverage, and pharmacy information after the member completes SMART on FHIR authorization. Conforms to the CMS Interoperability and Patient Access final rule and the HL7 Da Vinci PDex implementation guide.
+- [Moved to /providers/cigna/](https://apis.io/graphqls/cigna/cigna-graphql/)
 
-- **Human URL:** [https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide](https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide)
-- **Base URL:** `https://fhir.cigna.com/PatientAccess/v1`
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- CMS Interoperability
-- FHIR
-- Patient Access
-- SMART on FHIR
+- [Cigna Agentic Access](https://apis.io/agentic-access/cigna/cigna-agentic-access/)
 
-#### Properties
+#### JSON Schema (1)
 
-- [Documentation](https://developer.cigna.com/docs/service-apis/patient-access/implementation-guide)
-- [OpenAPI](openapi/cigna-patient-access-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/cigna-patient-access-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cigna-patient-access-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+The data models the API reads and writes.
 
-### Cigna Provider Directory API
+- [CignaPatient](https://apis.io/schemas/cigna/cigna-patient/)
 
-Public FHIR-based Provider Directory API listing Cigna's contracted network providers, organizations, locations, healthcare services, and practitioner roles. Conforms to the HL7 Da Vinci PDex Plan Network implementation guide and the CMS Provider Directory API requirements.
+#### JSON-LD (1)
 
-- **Human URL:** [https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide](https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide)
-- **Base URL:** `https://fhir.cigna.com/ProviderDirectory/v1`
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Cigna Context](https://apis.io/jsonld/cigna/cigna-context/)
 
-- CMS Interoperability
-- FHIR
-- Provider Directory
-- Public API
+#### Collections (34)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://developer.cigna.com/docs/service-apis/provider-directory/implementation-guide)
-- [OpenAPI](openapi/cigna-provider-directory-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/cigna-provider-directory-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cigna-provider-directory-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Cigna Drug Formulary Bulk Data API](https://apis.io/collections/cigna/open-cigna-bulk-data-api/)
+- [Cigna Drug Formulary Bulk Data Condition API](https://apis.io/collections/cigna/open-cigna-condition-api/)
+- [Cigna Drug Formulary Bulk Data Coverage API](https://apis.io/collections/cigna/open-cigna-coverage-api/)
+- [Cigna Drug Formulary API](https://apis.io/collections/cigna/open-cigna-drug-formulary-api/)
+- [Cigna Drug Formulary Bulk Data Encounter API](https://apis.io/collections/cigna/open-cigna-encounter-api/)
+- [Cigna Drug Formulary Bulk Data ExplanationOfBenefit API](https://apis.io/collections/cigna/open-cigna-explanationofbenefit-api/)
+- [Cigna Drug Formulary Bulk Data HealthcareService API](https://apis.io/collections/cigna/open-cigna-healthcareservice-api/)
+- [Cigna Drug Formulary Bulk Data InsurancePlan API](https://apis.io/collections/cigna/open-cigna-insuranceplan-api/)
+- [Cigna Drug Formulary Bulk Data Location API](https://apis.io/collections/cigna/open-cigna-location-api/)
+- [Cigna Drug Formulary Bulk Data MedicationKnowledge API](https://apis.io/collections/cigna/open-cigna-medicationknowledge-api/)
+- [Cigna Drug Formulary Bulk Data MedicationRequest API](https://apis.io/collections/cigna/open-cigna-medicationrequest-api/)
+- [Cigna Drug Formulary Bulk Data Observation API](https://apis.io/collections/cigna/open-cigna-observation-api/)
+- [Cigna Drug Formulary Bulk Data Organization API](https://apis.io/collections/cigna/open-cigna-organization-api/)
+- [Cigna Patient Access API](https://apis.io/collections/cigna/open-cigna-patient-access-api/)
+- [Cigna Drug Formulary Bulk Data Patient API](https://apis.io/collections/cigna/open-cigna-patient-api/)
+- [Cigna Drug Formulary Bulk Data Practitioner API](https://apis.io/collections/cigna/open-cigna-practitioner-api/)
+- [Cigna Drug Formulary Bulk Data PractitionerRole API](https://apis.io/collections/cigna/open-cigna-practitionerrole-api/)
+- [Cigna Provider Access API](https://apis.io/collections/cigna/open-cigna-provider-access-api/)
+- [Cigna Provider Directory API](https://apis.io/collections/cigna/open-cigna-provider-directory-api/)
+- [Cigna Drug Formulary Bulk Data API](https://apis.io/collections/cigna/postman-cigna-bulk-data-api/)
+- [Cigna Drug Formulary Bulk Data Condition API](https://apis.io/collections/cigna/postman-cigna-condition-api/)
+- [Cigna Drug Formulary Bulk Data Coverage API](https://apis.io/collections/cigna/postman-cigna-coverage-api/)
+- [Cigna Drug Formulary Bulk Data Encounter API](https://apis.io/collections/cigna/postman-cigna-encounter-api/)
+- [Cigna Drug Formulary Bulk Data ExplanationOfBenefit API](https://apis.io/collections/cigna/postman-cigna-explanationofbenefit-api/)
+- [Cigna Drug Formulary Bulk Data HealthcareService API](https://apis.io/collections/cigna/postman-cigna-healthcareservice-api/)
+- …and 9 more published on APIs.io
 
-### Cigna Drug Formulary API
+#### Governance rules (1)
 
-Public FHIR-based Drug Formulary API exposing Cigna's covered drug lists, formulary tiers, prior authorization requirements, step therapy, and quantity limits. Implements the HL7 Da Vinci PDex US Drug Formulary implementation guide required by the CMS Interoperability and Patient Access rule.
+Spectral rulesets for the provider's contracts.
 
-- **Human URL:** [https://developer.cigna.com/docs/service-apis](https://developer.cigna.com/docs/service-apis)
-- **Base URL:** `https://fhir.cigna.com/DrugFormulary/v1`
+- [Cigna — jsonschema rules](https://apis.io/rules/cigna/cigna-jsonschema-spectral-rules/)
 
-#### Tags
+#### Security (4)
 
-- CMS Interoperability
-- Drug Formulary
-- FHIR
-- Public API
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Properties
+- [Cigna Authentication](https://apis.io/security/cigna/cigna-authentication/)
+- [Cigna Domain Security](https://apis.io/security/cigna/cigna-domain-security/)
+- [Cigna Trust Center](https://apis.io/security/cigna/cigna-trust-center/)
+- [Cigna Vulnerability Disclosure](https://apis.io/security/cigna/cigna-vulnerability-disclosure/)
 
-- [Documentation](https://developer.cigna.com/docs/service-apis)
-- [OpenAPI](openapi/cigna-drug-formulary-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/cigna-drug-formulary-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cigna-drug-formulary-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### OAuth scopes (1)
 
-### Cigna Provider Access API
+The permissions the API asks for.
 
-FHIR API that allows in-network providers, with appropriate authorization, to retrieve a Cigna member's clinical and claims data to support care coordination. Implements the HL7 Da Vinci PDex Provider Access implementation guide and conforms to the CMS Interoperability and Prior Authorization final rule.
+- [Cigna Scopes](https://apis.io/scopes/cigna/cigna-scopes/)
 
-- **Human URL:** [https://developer.cigna.com/docs/service-apis](https://developer.cigna.com/docs/service-apis)
-- **Base URL:** `https://fhir.cigna.com/ProviderAccess/v1`
+#### Plans and pricing (1)
 
-#### Tags
+Published plans, tiers and prices.
 
-- CMS Interoperability
-- FHIR
-- Provider Access
+- [Cigna Plans Pricing](https://apis.io/plans/cigna/cigna-plans-pricing/)
 
-#### Properties
+#### Rate limits (1)
 
-- [Documentation](https://developer.cigna.com/docs/service-apis)
-- [OpenAPI](openapi/cigna-provider-access-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/cigna-provider-access-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cigna-provider-access-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Published request limits.
 
-## Common Properties
+- [Cigna Rate Limits](https://apis.io/rate-limits/cigna/cigna-rate-limits/)
 
-- [GitHub Organization](https://github.com/Cigna)
-- [LinkedIn](https://www.linkedin.com/company/the-cigna-group)
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Cigna Finops](https://apis.io/finops/cigna/cigna-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.cigna.com/)
-- [Developer Portal](https://developer.cigna.com/)
-- [Portal](https://developer.cigna.com/)
 - [Documentation](https://developer.cigna.com/docs/service-apis)
 - [Support](https://developer.cigna.com/support)
-- [Terms of Service](https://www.cigna.com/legal/terms-of-use)
-- [Privacy Policy](https://www.cigna.com/legal/privacy)
-- [J S O N L D Context](json-ld/cigna-context.jsonld)
-- [JSON Schema](json-schema/cigna-patient-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Spectral Rules](spectral/cigna-spectral.yml) — [Spectral](https://docs.stoplight.io/docs/spectral)
-- [L L Ms Txt](https://developer.cigna.com/llms.txt)
+- [Blog](https://newsroom.cigna.com/)
+- [Terms of service](https://www.cigna.com/legal/terms-of-use)
+- [Privacy policy](https://www.cigna.com/legal/privacy)
+- [GitHub](https://github.com/Cigna)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 31.5** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 78.6 |
+| Contract quality | 46.7 |
+| Contract governance | 9.8 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 15.5 |
+| Access clarity | 15.8 |
+
+**Agent readiness 26.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | documented (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 35.2** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/cigna/](https://apis.io/providers/cigna/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Cigna: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/cigna/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
